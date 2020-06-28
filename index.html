@@ -208,7 +208,7 @@ function bgChange() {
   <li><i>Specific Melee Weapons</i>:  Designates melee weapons by name (Letter Opener, Wrench, Battle Axe, etc.).</li>
   <li><i>Generic Melee Weapons Only</i>:  Only designates a "Kill with a (lethal / nonlethal) melee weapon" condition.</li>
 </ul>
-<input style="margin-left: 25px" id="nocommonmelee" name="nocommonmelee" type="checkbox" value="nocommonmelee" checked/> <label title="Removes the following items from the possible in-level melee kill conditions: Hammer, Wrench, Crowbar, Propane Flask, Fire Extinguisher, Soda Can, Shovel, Brick, Bust, Leather Briefcase, Spaghetti Can, Car Battery, Coconut, Baseball, Iron, Screwdriver, Kitchen Knife, Cleaver, Scissors, and Letter Opener.
+<input style="margin-left: 25px" id="nocommonmelee" name="nocommonmelee" type="checkbox" value="nocommonmelee" checked/> <label title="Removes the following items from the possible in-level melee kill conditions: Hammer, Wrench, Crowbar, Propane Flask, Fire Extinguisher, Soda Can, Shovel, Brick, Bust, Leather Briefcase, Spaghetti Can, Car Battery, Coconut, Baseball, Iron, Lead Pipe, Screwdriver, Kitchen Knife, Cleaver, Scissors, and Letter Opener, as well as a few others on a case-by-case basis.
 Bust is kept for ICA Facility missions due to lack of weapon variety." for="nocommonmelee"> Trim Down Melee Weapons</label><br /><br />
 <!--<input style="margin-left: 25px" id="nocommonmelee" name="nocommonmelee" type="checkbox" value="nocommonmelee" checked/> <label title="Limits each level's possible melee weapon conditions to be more in keeping with other categories. Removes all but a handful of both lethal and nonlethal weapons from each level, usually based on item uniqueness / rarity." for="nocommonmelee"> Trim Down Melee Weapons</label><br /><br />-->
 <select id="guns" name="guns">
@@ -1862,7 +1862,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with a Leather Briefcase", "after pacifying with a Branson MD-2 Microphone", "after pacifying with a Soda Can", "after pacifying with a can of Insecticide", "after pacifying with a Pool Ball", "after pacifying with a Police Baton", "after pacifying with a Coconut", "after pacifying with a Shovel", "after pacifying with a Golf Club", "after pacifying with a Lead Pipe");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Branson MD-2 Microphone", "after pacifying with a can of Insecticide", "after pacifying with a Pool Ball", "after pacifying with a Police Baton", "after pacifying with a Golf Club", "after pacifying with a Lead Pipe");
+          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Branson MD-2 Microphone", "after pacifying with a can of Insecticide", "after pacifying with a Pool Ball", "after pacifying with a Police Baton", "after pacifying with a Golf Club");
         }
         }
         if (y == "genericweapons"){
@@ -2147,7 +2147,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with a Leather Briefcase", "after pacifying with a Branding Iron", "after pacifying with a Soda Can", "after pacifying with a Cowboy Bust", "after pacifying with a Brick", "after pacifying with a Shovel", "after pacifying with a Mannequin Arm", "after pacifying with a Lead Pipe", "after pacifying with a Baseball");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Branding Iron", "after pacifying with a Cowboy Bust", "after pacifying with a Mannequin Arm", "after pacifying with a Lead Pipe");
+          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Branding Iron", "after pacifying with a Cowboy Bust", "after pacifying with a Mannequin Arm");
         }
         }
         if (y == "genericweapons"){
@@ -2174,7 +2174,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
@@ -2317,7 +2317,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
         }
         if (document.getElementById("lockedexits").checked == true){
         
-          possibleexits.push("Exit via Quad Bike");
+          possibleexits.push("Exit via Quad Bike", "Exit via Tornado Shelter");
         }
         if (document.getElementById("hardexits").checked == true){
         
@@ -2442,7 +2442,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with a Leather Briefcase", "after pacifying with a Cowboy Bust", "after pacifying with a Soda Can", "after pacifying with a Fire Poker", "after pacifying with a Bust", "after pacifying with a Police Baton", "after pacifying with a Frying Pan", "after pacifying with a Shovel", "after pacifying with a Lead Pipe");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Cowboy Bust", "after pacifying with a Fire Poker", "after pacifying with a Police Baton", "after pacifying with a Frying Pan", "after pacifying with a Lead Pipe");
+          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Cowboy Bust", "after pacifying with a Fire Poker", "after pacifying with a Police Baton", "after pacifying with a Frying Pan");
         }
         }
         if (y == "genericweapons"){
@@ -2921,7 +2921,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Propane Flask", "after pacifying with a Driftwood Log", "after pacifying with a Maori Paddle", "after pacifying with a Fire Poker", "after pacifying with a Soda Can", "after pacifying with a Car Battery", "after pacifying with a Shovel", "after pacifying with a Lead Pipe", "after pacifying with a Bust", "after pacifying with a Can of Expired Spaghetti Sauce");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Driftwood Log", "after pacifying with a Maori Paddle", "after pacifying with a Fire Poker", "after pacifying with a Lead Pipe");
+          possiblekills.push("after pacifying with a Driftwood Log", "after pacifying with a Maori Paddle", "after pacifying with a Fire Poker");
         }
         }
         if (y == "genericweapons"){
@@ -3194,7 +3194,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with a Leather Briefcase", "after pacifying with an Android Arm", "after pacifying with a Soda Can", "after pacifying with a Fish", "after pacifying with a Bag of Sugar", "after pacifying with a Police Baton", "after pacifying with a Coconut", "after pacifying with a Shovel", "after pacifying with a Golf Club", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Baseball", "after pacifying with a Brick", "after pacifying with a Bust", "after pacifying with a Pneumatic Wrench", "after pacifying with a Cocaine Brick", "after pacifying with a Didgeridoo");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with an Android Arm", "after pacifying with a Fish", "after pacifying with a Bag of Sugar", "after pacifying with a Police Baton", "after pacifying with a Golf Club", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Pneumatic Wrench", "after pacifying with a Cocaine Brick", "after pacifying with a Didgeridoo");
+          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with an Android Arm", "after pacifying with a Fish", "after pacifying with a Bag of Sugar", "after pacifying with a Police Baton", "after pacifying with a Golf Club", "after pacifying with a Frying Pan", "after pacifying with a Pneumatic Wrench", "after pacifying with a Cocaine Brick", "after pacifying with a Didgeridoo");
         }
         }
         if (y == "genericweapons"){
@@ -3474,7 +3474,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with a Collectors Baseball Bat", "after pacifying with a Driftwood Log", "after pacifying with a Meaty Bone", "after pacifying with a Soda Can", "after pacifying with a Cowboy Bust", "after pacifying with a Coconut", "after pacifying with a Shovel", "after pacifying with a Claw Hammer", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Brick", "after pacifying with a Cocaine Brick", "after pacifying with a Pool Ball", "after pacifying with a Can of Expired Spaghetti Sauce");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Collectors Baseball Bat", "after pacifying with a Driftwood Log", "after pacifying with a Meaty Bone", "after pacifying with a Cowboy Bust", "after pacifying with a Claw Hammer", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Cocaine Brick", "after pacifying with a Pool Ball");
+          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Collectors Baseball Bat", "after pacifying with a Driftwood Log", "after pacifying with a Meaty Bone", "after pacifying with a Cowboy Bust", "after pacifying with a Claw Hammer", "after pacifying with a Frying Pan", "after pacifying with a Cocaine Brick", "after pacifying with a Pool Ball");
         }
         }
         if (y == "genericweapons"){
@@ -3762,7 +3762,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with an Iron", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Soda Can", "after pacifying with a Can of Expired Spaghetti Sauce", "after pacifying with a Lever", "after pacifying with a Shovel", "after pacifying with a Car Battery", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Brick", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake", "after pacifying with a Fish");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake", "after pacifying with a Fish");
+          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake", "after pacifying with a Fish");
         }
         }
         if (y == "genericweapons"){
@@ -4057,7 +4057,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with a Baseball", "after pacifying with a Meaty Bone", "after pacifying with a Soda Can", "after pacifying with a Can of Expired Spaghetti Sauce", "after pacifying with a Shovel", "after pacifying with a Car Battery", "after pacifying with a Lead Pipe", "after pacifying with a Brick", "after pacifying with a Bust", "after pacifying with a Rake", "after pacifying with a Newspaper", "after pacifying with a Package", "after pacifying with a Paddle", "after pacifying with a Golf Club", "after pacifying with a Cigar Box");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Meaty Bone", "after pacifying with a Lead Pipe", "after pacifying with a Rake", "after pacifying with a Newspaper", "after pacifying with a Package", "after pacifying with a Paddle", "after pacifying with a Golf Club", "after pacifying with a Cigar Box");
+          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Meaty Bone", "after pacifying with a Rake", "after pacifying with a Newspaper", "after pacifying with a Package", "after pacifying with a Paddle", "after pacifying with a Golf Club", "after pacifying with a Cigar Box");
         }
         }
         if (y == "genericweapons"){
@@ -4349,7 +4349,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with a Gold Idol", "after pacifying with a Meaty Bone", "after pacifying with a Soda Can", "after pacifying with a Can of Expired Spaghetti Sauce", "after pacifying with a Shovel", "after pacifying with a Car Battery", "after pacifying with a Lead Pipe", "after pacifying with a Brick", "after pacifying with a Bust", "after pacifying with a Branding Iron", "after pacifying with a Newspaper", "after pacifying with an Imperial Filigree Egg", "after pacifying with a Paddle", "after pacifying with a Golf Club", "after pacifying with a Maori Paddle", "after pacifying with an Iron", "after pacifying with a Cannonball", "after pacifying with a Khatvanga", "after pacifying with a Cigar Box", "after pacifying with a Cocaine Brick", "after pacifying with a Mace", "after pacifying with a Coconut", "after pacifying with a Cowboy Bust", "after pacifying with a Driftwood Log", "after pacifying with a Fire Poker", "after pacifying with a Torch", "after pacifying with a Fish", "after pacifying with a Frying Pan");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Gold Idol", "after pacifying with a Meaty Bone", "after pacifying with a Lead Pipe", "after pacifying with a Branding Iron", "after pacifying with a Newspaper", "after pacifying with an Imperial Filigree Egg", "after pacifying with a Paddle", "after pacifying with a Golf Club", "after pacifying with a Maori Paddle", "after pacifying with a Cannonball", "after pacifying with a Khatvanga", "after pacifying with a Cigar Box", "after pacifying with a Cocaine Brick", "after pacifying with a Mace", "after pacifying with a Cowboy Bust", "after pacifying with a Driftwood Log", "after pacifying with a Fire Poker", "after pacifying with a Torch", "after pacifying with a Fish", "after pacifying with a Frying Pan");
+          possiblekills.push("after pacifying with a Gold Idol", "after pacifying with a Branding Iron", "after pacifying with an Imperial Filigree Egg", "after pacifying with a Paddle", "after pacifying with a Golf Club", "after pacifying with a Maori Paddle", "after pacifying with a Khatvanga", "after pacifying with a Cigar Box", "after pacifying with a Cocaine Brick", "after pacifying with a Mace", "after pacifying with a Cowboy Bust", "after pacifying with a Torch");
         }
         }
         if (y == "genericweapons"){
@@ -4637,7 +4637,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Bust", "after pacifying with a Newspapaer", "after pacifying with a Car Battery", "after pacifying with a Package", "after pacifying with a Police Baton", "after pacifying with a Claw Hammer", "after pacifying with a Small Goldbar", "after pacifying with a Soda Can", "after pacifying with a Gold Idol", "after pacifying with a Violin", "after pacifying with a Feather Duster", "after pacifying with a Goldbar", "after pacifying with a Wet Floor Sign", "after pacifying with an Imperial Filigree Egg", "after pacifying with an Iron");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Newspapaer", "after pacifying with a Package", "after pacifying with a Police Baton", "after pacifying with a Claw Hammer", "after pacifying with a Small Goldbar", "after pacifying with a Gold Idol", "after pacifying with a Violin", "after pacifying with a Feather Duster", "after pacifying with a Goldbar", "after pacifying with a Wet Floor Sign", "after pacifying with an Imperial Filigree Egg");
+          possiblekills.push("after pacifying with a Package", "after pacifying with a Small Goldbar", "after pacifying with a Gold Idol", "after pacifying with a Violin", "after pacifying with a Goldbar", "after pacifying with a Wet Floor Sign");
         }
         }
         if (y == "genericweapons"){
@@ -4924,7 +4924,7 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with a Driftwood Log", "after pacifying with a Meaty Bone", "after pacifying with a Soda Can", "after pacifying with a Coconut", "after pacifying with a Shovel", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Baseball", "after pacifying with an Iron", "after pacifying with a Maori Paddle", "after pacifying with a Newspaper", "after pacifying with a Kettlebell", "after pacifying with a Paddle", "after pacifying with a Pearl", "after pacifying with a Feather Duster", "after pacifying with a Fish", "after pacifying with a Police Baton", "after pacifying with a Gold Idol", "after Pacifying with a Golf Club", "after pacifying with a Wet Floor Sign", "after pacifying with an Imperial Filigree Egg");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Driftwood Log", "after pacifying with a Meaty Bone", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Maori Paddle", "after pacifying with a Newspaper", "after pacifying with a Kettlebell", "after pacifying with a Paddle", "after pacifying with a Pearl", "after pacifying with a Feather Duster", "after pacifying with a Fish", "after pacifying with a Police Baton", "after pacifying with a Gold Idol", "after Pacifying with a Golf Club", "after pacifying with a Wet Floor Sign", "after pacifying with an Imperial Filigree Egg");
+          possiblekills.push("after pacifying with a Driftwood Log", "after pacifying with a Maori Paddle", "after pacifying with a Paddle", "after pacifying with a Pearl", "after pacifying with a Feather Duster", "after pacifying with a Fish", "after pacifying with a Police Baton", "after pacifying with a Gold Idol", "after Pacifying with a Golf Club", "after pacifying with a Wet Floor Sign", "after pacifying with an Imperial Filigree Egg");
         }
         }
         if (y == "genericweapons"){
@@ -5515,10 +5515,11 @@ function reroll() {-->
 
 <br />
 <br />
-<p><i>Future Features:</i></p><ul>
+<p><i>Planned Future Features:</i></p><ul>
   <li><i>Loadout Roulette!</li>
   <li>Adding an option for specific kill conditions post-pacification (i.e., "Kill Kalvin Ritter with a pistol after pacifying him with a Bust.")</li>
-  <li>A way to import/export option presets, plus a personal High Score option (hopefully).</li>
+  <li>Full compatibility with Hitman 3 after it comes out.</li>
+  <li>A way to import/export option presets, plus a personal High Score option (maybe).</li>
   <li>Tweaking of accident kill conditions - Currently, some impossible or completely impractical combinations may occur.</li>
   <li>Fixing impossible combinations (i.e., "Kill Ken Morgan with an exploding Tuk-Tuk" alongside "Exit via Tuk-Tuk.")</li>
   <li>More unique kill conditions (i.e., Pushing Dalia onto Viktor, massaging Strandberg, etc.)</li>
@@ -5530,6 +5531,7 @@ function reroll() {-->
 <br />
 <br />
 <p><i>Made by 3FacedJanus aka BTWNM. Hitman is (TM) IO Interactive.</i></p>
+<p><i>Special thanks to Kotti, Hitmaps.com, and everyone at IOI.</i></p>
 <br />
 </ol>
 </body>
