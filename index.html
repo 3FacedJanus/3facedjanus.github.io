@@ -310,6 +310,8 @@ function looseDisguises() {
 }
 </script>
 <h2><u>Start Conditions</u></h2>
+<input id="randostarts" name="randostarts" type="checkbox" value="randostarts" checked/> <label title="Chooses a random starting location from those available." for="randostarts">Randomize Starts</label><br />
+<br />
 <select id="starts" name="starts">
 <option value="basicstarts">Any Start Location</option>
 <option value="suitstarts">Only Suit Start Locations</option>
@@ -321,6 +323,7 @@ function looseDisguises() {
   <li><i>Only Undercover Start Locations</i>:  Chooses only starts that begin with 47 already in disguise.</li>
 </ul>  
 <h2><u>Exit Conditions</u></h2>
+<input id="randoexits" name="randoexits" type="checkbox" value="randoexits" checked/> <label title="Chooses a random exit from those available." for="randoexits">Randomize Exits</label><br />
 <input id="basicexits" name="basicexits" type="checkbox" value="basicexits" checked/> <label title="Basic exits with no special conditions." for="basicexits"> Basic Exits</label><br />
 <input id="lockedexits" name="lockedexits" type="checkbox" value="lockedexits" checked/> <label title="Basic exits that require keys, items, or disguises to access." for="lockedexits"> Locked Exits</label><br />
 <input id="hardexits" name="hardexits" type="checkbox" value="hardexits"/> <label title="Adds difficult / easter egg exits, such as the flamingo exit in Miami or the window exit in New York. Not available for all missions and generally not recommended." for="hardexits"> Difficult Exits</label><br />
@@ -675,10 +678,18 @@ function roulette() {
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     }
 
      document.getElementById("pickupconditions").innerHTML = "";   
         
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/3CASqLu.jpg\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Kalvin Ritter " + killmethod + disguisemethod;
@@ -686,7 +697,11 @@ function roulette() {
 document.getElementById("target2pic").innerHTML = ''; document.getElementById("target2killconditions").innerHTML = "";
 document.getElementById("target3pic").innerHTML = ''; document.getElementById("target3killconditions").innerHTML = "";
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
+     if (document.getElementById("randoexits").checked == true){
      document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
   <!-------------------------------------------------------------------------------- CUBA -->
     if (x == "cuba"){
@@ -707,29 +722,29 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilmelee").checked == true){
           var y = document.getElementById("weapons").value;
           if (y == "basicweapons"){
-          possiblekills.push();
+          possiblekills.push("with a small lethal melee weapon");
         }
           if (y == "specificweapons"){
-          possiblekills.push();
+          possiblekills.push("with a Fiber Wire");
         }
         if (y == "genericweapons"){
-          possiblekills.push();
+          possiblekills.push("with a lethal melee weapon");
         }
         }
         <!--------------------------------------------- IN-LEVEL RANGED -->
         if (document.getElementById("ilranged").checked == true){
           var y = document.getElementById("guns").value;
           if (y == "basicguns"){
-          possiblekills.push();
+          possiblekills.push("with a pistol");
         }
           if (y == "loudguns"){
-          possiblekills.push();
+          possiblekills.push("with a silenced pistol");
         }
         if (y == "specificguns"){
-          possiblekills.push();
+          possiblekills.push("with an ICA19");
         }
         if (y == "genericguns"){
-          possiblekills.push();
+          possiblekills.push("with a ranged weapon");
         }
         }
         <!--------------------------------------------- IN-LEVEL NONLETHAL MELEE -->
@@ -785,29 +800,29 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("lomelee").checked == true){
           var y = document.getElementById("weapons").value;
           if (y == "basicweapons"){
-          possiblekills.push("with a small lethal melee weapon");
+          possiblekills.push();
         }
           if (y == "specificweapons"){
-          possiblekills.push("with a Fiber Wire");
+          possiblekills.push();
         }
         if (y == "genericweapons"){
-          possiblekills.push("with a lethal melee weapon");
+          possiblekills.push();
         }
         }
         <!--------------------------------------------- LOADOUT RANGED -->
         if (document.getElementById("loranged").checked == true){
           var y = document.getElementById("guns").value;
           if (y == "basicguns"){
-          possiblekills.push("with a pistol");
+          possiblekills.push();
         }
           if (y == "loudguns"){
-          possiblekills.push("with a silenced pistol");
+          possiblekills.push();
         }
         if (y == "specificguns"){
-          possiblekills.push("with an ICA19");
+          possiblekills.push();
         }
         if (y == "genericguns"){
-          possiblekills.push("with a ranged weapon");
+          possiblekills.push();
         }
         }
         <!--------------------------------------------- LOADOUT NONLETHAL MELEE -->
@@ -918,9 +933,17 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
      document.getElementById("pickupconditions").innerHTML = ""
         
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/uY6eGDK.jpg\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Jasper Knight " + killmethod + disguisemethod;
@@ -929,7 +952,11 @@ document.getElementById("target2pic").innerHTML = ''; document.getElementById("t
 document.getElementById("target3pic").innerHTML = ''; document.getElementById("target3killconditions").innerHTML = "";
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      
      }
   <!-------------------------------------------------------------------------------- PARIS -->
@@ -1192,13 +1219,23 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }     
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/oat5Z8m.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Dalia Margolis " + killmethod + disguisemethod;
@@ -1207,13 +1244,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/4RH4lSo.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Viktor Novikov " + killmethod + disguisemethod;
      
 document.getElementById("target3pic").innerHTML = ''; document.getElementById("target3killconditions").innerHTML = "";
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
-    document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
   <!-------------------------------------------------------------------------------- SAPIENZA -->
     if (x == "sapienza"){
@@ -1472,13 +1517,25 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by drowning") {
+     crazywarning();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/GjKooBl.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Silvio Caruso " + killmethod + disguisemethod;
@@ -1499,6 +1556,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/iYFDeIc.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Francesca De Santis " + killmethod + disguisemethod;
@@ -1514,7 +1575,11 @@ document.getElementById("target3pic").innerHTML = ''; document.getElementById("t
 
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
   <!-------------------------------------------------------------------------------- MARRAKESH -->
     if (x == "marrakesh"){
@@ -1776,13 +1841,23 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/qFyHhIm.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Reza Zaydan " + killmethod + disguisemethod;
@@ -1791,6 +1866,10 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/zAv0tNj.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Claus Strandberg " + killmethod + disguisemethod;
@@ -1798,7 +1877,11 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
 document.getElementById("target3pic").innerHTML = ''; document.getElementById("target3killconditions").innerHTML = "";
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
   <!-------------------------------------------------------------------------------- BANGKOK -->
     if (x == "bangkok"){
@@ -2060,13 +2143,23 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by drowning") {
+     crazywarning();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/fzI4amM.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Jordan Cross " + killmethod + disguisemethod;
@@ -2075,6 +2168,12 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/PbMyivI.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Ken Morgan " + killmethod + disguisemethod;
@@ -2082,7 +2181,11 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
 document.getElementById("target3pic").innerHTML = ''; document.getElementById("target3killconditions").innerHTML = "";
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 
   <!-------------------------------------------------------------------------------- COLORADO -->
@@ -2346,13 +2449,23 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
 
-document.getElementById("startconditions").innerHTML = startmethod;
+        if (document.getElementById("randostarts").checked == true){
+     document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
 
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/o8qpqxc.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Sean Rose " + killmethod + disguisemethod;
@@ -2361,6 +2474,12 @@ document.getElementById("startconditions").innerHTML = startmethod;
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
+     }
 
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/cTcmyiQ.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Penelope Graves " + killmethod + disguisemethod;
@@ -2369,6 +2488,12 @@ document.getElementById("startconditions").innerHTML = startmethod;
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
+     }
 
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/EbwuyKh.png\' width="100%" height="100%">';
 
@@ -2379,10 +2504,20 @@ document.getElementById("target3killconditions").innerHTML = "Kill Ezra Berg " +
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
+     }
 
 document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.com/5o6lgzE.png\' width="100%" height="100%">'; document.getElementById("target4killconditions").innerHTML = "Kill Maya Parvati " + killmethod + disguisemethod;
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- HOKKAIDO -->
     if (x == "hokkaido"){
@@ -2619,13 +2754,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/sOiYgLZ.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Yuki Yamazaki " + killmethod + disguisemethod;
@@ -2854,6 +2997,10 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     }
     
     document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/7g4Jn8g.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Erich Soders " + killmethod + disguisemethod;
@@ -2861,7 +3008,11 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
 document.getElementById("target3pic").innerHTML = ''; document.getElementById("target3killconditions").innerHTML = "";
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- HAWKES BAY -->
     if (x == "hawkesbay"){
@@ -3119,13 +3270,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/UDCjmTy.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Alma Reynard " + killmethod + disguisemethod;
@@ -3134,7 +3293,11 @@ document.getElementById("target2pic").innerHTML = '';     document.getElementByI
 document.getElementById("target3pic").innerHTML = ''; document.getElementById("target3killconditions").innerHTML = "";
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- MIAMI -->
     if (x == "miami"){
@@ -3392,13 +3555,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/dB3iEWa.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Robert Knox " + killmethod + disguisemethod;
@@ -3407,6 +3578,12 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by drowning") {
+     crazywarning();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/TnBoENw.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Sierra Knox " + killmethod + disguisemethod;
@@ -3414,7 +3591,11 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
 document.getElementById("target3pic").innerHTML = ''; document.getElementById("target3killconditions").innerHTML = "";
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- SANTA FORTUNA -->
     if (x == "santafortuna"){
@@ -3672,13 +3853,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/jpt4xnF.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Rico Delgado " + killmethod + disguisemethod;
@@ -3687,6 +3876,10 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/ZKae95Z.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Andrea Martinez " + killmethod + disguisemethod;
@@ -3695,6 +3888,12 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "with a falling object") {
+     crazywarning();
+     }
 
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/qJ7NRIR.png\' width="100%" height="100%">';
 
@@ -3702,7 +3901,11 @@ document.getElementById("target3killconditions").innerHTML = "Kill Jorge Fanco "
 
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- MUMBAI -->
     if (x == "mumbai"){
@@ -3960,13 +4163,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      if (document.getElementById("wkale").checked == false){
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/6T3UtSm.png\' width="100%" height="100%">';
@@ -3980,6 +4191,10 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/tGeyxaO.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Vanya Shah " + killmethod + disguisemethod;
@@ -3988,12 +4203,20 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     }
 
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/Xb2pOtJ.png\' width="100%" height="100%">'; document.getElementById("target3killconditions").innerHTML = "Kill Dawood Rangan " + killmethod + disguisemethod;
 
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- WHITTLETON CREEK -->
     if (x == "whittletoncreek"){
@@ -4255,13 +4478,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/v8ITNEp.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Janus " + killmethod + disguisemethod;
@@ -4270,6 +4501,12 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "with a fatal fall") {
+     crazywarning();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/FBMT99z.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Nolan Cassidy " + killmethod + disguisemethod;
@@ -4289,7 +4526,11 @@ document.getElementById("target3pic").innerHTML = ''; document.getElementById("t
 
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- ISLE OF SGAIL -->
     if (x == "isleofsgail"){
@@ -4547,13 +4788,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/jzlt9cD.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Zoe Washington " + killmethod + disguisemethod;
@@ -4562,6 +4811,12 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/yWO5lLN.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Sophia Washington " + killmethod + disguisemethod;
@@ -4577,7 +4832,11 @@ document.getElementById("target3pic").innerHTML = ''; document.getElementById("t
 
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- NEW YORK -->
     if (x == "newyork"){
@@ -4835,13 +5094,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/sCMgPWZ.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Athena Savalas " + killmethod + disguisemethod;
@@ -4864,7 +5131,11 @@ document.getElementById("target3pic").innerHTML = ''; document.getElementById("t
 
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- HAVEN ISLAND -->
     if (x == "havenisland"){
@@ -5122,13 +5393,21 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
      var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
      
+     if (killmethod == null) {
+     errorreset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
+     if (document.getElementById("randostarts").checked == true){
      document.getElementById("startconditions").innerHTML = startmethod;
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/h176AtY.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Tyson Williams " + killmethod + disguisemethod;
@@ -5137,6 +5416,10 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/6PQbfMU.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Ljudmila Vetrova " + killmethod + disguisemethod;
@@ -5145,14 +5428,22 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
-
+     
+     if (killmethod == null) {
+     errorreset();
+     }
+     
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/dZxfXcX.png\' width="100%" height="100%">';
 
 document.getElementById("target3killconditions").innerHTML = "Kill Steven Bradley " + killmethod + disguisemethod;
 
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 <!-------------------------------------------------------------------------------- DUBAI -->
     if (x == "dubai"){
@@ -5414,7 +5705,11 @@ document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisem
      document.getElementById("pickupconditions").innerHTML = "";
         }   
      
-document.getElementById("startconditions").innerHTML = '';
+        if (document.getElementById("randostarts").checked == true){
+     document.getElementById("startconditions").innerHTML = "";
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
      
 document.getElementById("target1pic").innerHTML = '';
      
@@ -5432,7 +5727,11 @@ document.getElementById("target4pic").innerHTML = '';
 
 document.getElementById("target4killconditions").innerHTML = "";
 
-document.getElementById("exitconditions").innerHTML = '';
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = "";
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
      }
 }
 </script>
@@ -5493,8 +5792,37 @@ roulette();
 
 <script>
 function preroulette() {
+var strikes = 0;
 var x = document.getElementById("mission").value;
 roulette();
+}
+</script>
+
+<script>
+function crazywarning() {
+alert("Crazy Kill Condition Warning!!! \nOne (or more) of the kill conditions you rolled is insanely hard. Proceed only if you dare - otherwise, reroll! \n(To disable these warnings, uncheck 'Crazy Condition Warnings' under 'Other Options.'")
+}
+</script>
+<!--alert("You rolled a crazy difficult kill condition! The Roulette will now reroll. If you want to keep these kill conditions in the results, uncheck 'Disable Crazy Kill Conditions' under 'Other Options.'");-->
+
+<script>
+function errorreset() {
+alert("Error: Undefined kill condition. Adjust your options for this mission.");
+document.getElementById("missiontitle").innerHTML = ""; 
+document.getElementById("pickupconditions").innerHTML = "";   
+document.getElementById("startconditions").innerHTML = "";
+document.getElementById("target1pic").innerHTML = '';
+document.getElementById("target1killconditions").innerHTML = "";
+document.getElementById("target2pic").innerHTML = '';
+document.getElementById("target2killconditions").innerHTML = "";
+document.getElementById("target3pic").innerHTML = '';
+document.getElementById("target3killconditions").innerHTML = "";
+document.getElementById("target4pic").innerHTML = '';
+document.getElementById("target4killconditions").innerHTML = "";
+document.getElementById("exitconditions").innerHTML = "";
+selectElement('mission', 'rando');
+document.body.style.backgroundColor = "#ffffff";
+bgchange();
 }
 </script>
 
@@ -5502,9 +5830,12 @@ roulette();
 function checkstrikes() {
 if (strikes >= 5){
 var strikes = 0;
+alert("Error: Undefined kill condition. Adjust your options for this mission.");
+selectElement('mission', 'rando');
 roulette();
 } else if (strikes < 5) {
-
+roulette();
+}
 }
 </script>
 
@@ -5520,6 +5851,7 @@ function reroll() {-->
   <li>Adding an option for specific kill conditions post-pacification (i.e., "Kill Kalvin Ritter with a pistol after pacifying him with a Bust.")</li>
   <li>Full compatibility with Hitman 3 after it comes out.</li>
   <li>A way to import/export option presets, plus a personal High Score option (maybe).</li>
+  <li>Easier Mode (maybe).</li>
   <li>Tweaking of accident kill conditions - Currently, some impossible or completely impractical combinations may occur.</li>
   <li>Fixing impossible combinations (i.e., "Kill Ken Morgan with an exploding Tuk-Tuk" alongside "Exit via Tuk-Tuk.")</li>
   <li>More unique kill conditions (i.e., Pushing Dalia onto Viktor, massaging Strandberg, etc.)</li>
@@ -5530,8 +5862,8 @@ function reroll() {-->
 <br />
 <br />
 <br />
-<p><i>Made by 3FacedJanus aka BTWNM. Hitman is (TM) IO Interactive.</i></p>
-<p><i>Special thanks to Kotti, Hitmaps.com, and everyone at IOI.</i></p>
+<p><i>Made by 3FacedJanus, aka BTWNM. Hitman is (TM) IO Interactive.</i></p>
+<p><i>Special thanks to <a href="https://thekotti.github.io/hitman.html">Kotti</a>, <a href="https://www.hitmaps.com/">Hitmaps.com</a>, and everyone at IOI.</i></p>
 <br />
 </ol>
 </body>
