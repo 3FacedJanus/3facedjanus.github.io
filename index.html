@@ -331,7 +331,7 @@ function looseDisguises() {
 <h2><u>Other Options</u></h2>
 <input id="objroulette" name="objroulette" type="checkbox" value="objroulette" checked/> <label title="Randomize mission objective conditions, like the Virus in Sapienza or the Data in New York." for="objroulette"> Objective Roulette</label><br />
 <input id="pickups" name="pickups" type="checkbox" value="pickups" checked/> <label title="Randomize the mission's Agency Pickup location." for="pickups"> Agency Pickup Roulette</label><br />
-<input id="crazywarnings" name="crazywarnings" type="checkbox" value="crazywarnings" checked/> <label title="With this checked, you will receive a popup alerting you of insanely difficult kill conditions. Ignore them at your own peril." for="crazywarnings"> Crazy Condition Warnings</label><br />
+<input id="crazywarnings" name="crazywarnings" type="checkbox" value="crazywarnings" checked/> <label title="With this checked, you will receive a popup alerting you of insanely difficult accident kill conditions. Ignore them at your own peril." for="crazywarnings"> Crazy Condition Warnings</label><br />
 <!--<input id="pickupitems" name="pickupitems" type="checkbox" value="pickupitems" checked/> <label title="Along with the Pickup Roulette, generates a random loadout item to be in it.
 Does nothing if checked without Pickup Roulette." for="pickupitems"> Pickup Roulette Items</label><br />-->
 <input id="wkale" name="wkale" type="checkbox" value="wkale"/> <label for="wkale"> Display Maelstrom as Wazir Kale</label><br />
@@ -5802,11 +5802,12 @@ roulette();
 <script>
 function crazywarning() {
 if (document.getElementById("crazywarnings").checked == true){
-     alert("Crazy Kill Condition Warning!!! \nOne (or more) of the kill conditions you rolled is insanely hard. Proceed only if you dare - otherwise, reroll! \n(To disable these warnings, uncheck 'Crazy Condition Warnings' under 'Other Options.'")
+if (document.getElementById("loaccident").checked == false){
+     alert("Crazy Kill Condition Warning!!! \nOne (or more) of the kill conditions you rolled is an insanely hard accident kill that may involve dragging an unconscious target far away from their normal range. Proceed only if you dare - otherwise, reroll! \n(To disable these warnings, uncheck 'Crazy Condition Warnings' under 'Other Options.'")
+}
 }
 }
 </script>
-<!--alert("You rolled a crazy difficult kill condition! The Roulette will now reroll. If you want to keep these kill conditions in the results, uncheck 'Disable Crazy Kill Conditions' under 'Other Options.'");-->
 
 <script>
 function errorreset() {
@@ -5829,7 +5830,7 @@ bgchange();
 }
 </script>
 
-<script>
+<!--<script>
 function checkstrikes() {
 if (strikes >= 5){
 var strikes = 0;
@@ -5840,7 +5841,7 @@ roulette();
 roulette();
 }
 }
-</script>
+</script>-->
 
 <!--<script>
 function reroll() {-->
