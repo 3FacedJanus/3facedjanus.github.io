@@ -8,14 +8,12 @@
   box-sizing: border-box;
 }
 
-/* Create three equal columns that floats next to each other */
 .column {
   float: left;
   width: 25%;
   padding: 10px;
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
@@ -173,7 +171,6 @@ function bgChange() {
 (May require unlocking weapons via Challenges and are more likely to be rolled than in-level weapons.)" for="loexplosion">Loadout Explosives</label><br />
 <input id="loaccident" name="loaccident" type="checkbox" value="loaccident"/> <label title="Accidents that are possible only with items / poisons in the loadout screen. 
 (May require unlocking weapons via Challenges and are more likely to be rolled than in-level weapons.)" for="loaccident">Loadout Accidents / Poisons</label><br />
-<!--<input id="guardguns" name="guardguns" type="checkbox" value="guardguns"/> <label title="Firearms that cannot be picked up normally in the level and must be taken from guards. Guard-only guns are always designated by their exact names." for="guardguns">Guard-Only Guns</label><br />-->
 <input id="adsnipers" name="adsnipers" type="checkbox" value="adsnipers"/> <label title="Adds a chance for 'Sniper Assassination' conditions to appear. These can be any kill you like, as long as the kill in question is triggered by you firing a sniper rifle (i.e., blowing up a propane flask). Functions independently from 'Loadout Ranged Weapons.'" for="adsnipers">Sniper Assassinations</label><br />
 <!--<input id="kokills" name="kokills" type="checkbox" value="kokills"/> <label title="" for="kokills">Require Nonlethal KO's before Kills</label>-->
 <br />
@@ -586,10 +583,6 @@ function roulette() {
           possiblekills.push();
         }
         }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push("with a Bartoli 75S");
-        }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
         
@@ -660,7 +653,7 @@ function roulette() {
         } else {
      document.getElementById("startconditions").innerHTML = "";
         }
-     
+        
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/3CASqLu.jpg\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Kalvin Ritter " + killmethod + disguisemethod;
      
@@ -839,10 +832,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push();
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push("with a Bartoli 75S", "with a Shashka A33");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -1103,10 +1092,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push("with an HX-10");
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
@@ -1400,10 +1385,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
@@ -1726,10 +1707,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("in an accident", "with poison");
         }
         }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
-        }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
         var y = document.getElementById("guns").value;
@@ -2027,10 +2004,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
@@ -2332,10 +2305,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
@@ -2660,10 +2629,6 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
           possiblekills.push("in an accident", "with poison");
         }
         }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
-        }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
         var y = document.getElementById("guns").value;
@@ -2903,10 +2868,6 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -3154,10 +3115,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
@@ -3439,10 +3396,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
@@ -3737,10 +3690,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
@@ -4047,10 +3996,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
@@ -4363,10 +4308,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("in an accident", "with poison");
         }
         }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
-        }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
         var y = document.getElementById("guns").value;
@@ -4673,10 +4614,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("in an accident", "with poison");
         }
         }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
-        }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
         var y = document.getElementById("guns").value;
@@ -4979,10 +4916,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("in an accident", "with poison");
         }
         }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
-        }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
         var y = document.getElementById("guns").value;
@@ -5277,10 +5210,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
@@ -5585,10 +5514,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison");
         }
-        }
-        <!--------------------------------------------- GUARD-ONLY GUNS -->
-        if (document.getElementById("guardguns").checked == true){
-          possiblekills.push();
         }
         <!--------------------------------------------- SNIPER ASSASSINATIONS -->
         if (document.getElementById("adsnipers").checked == true){
