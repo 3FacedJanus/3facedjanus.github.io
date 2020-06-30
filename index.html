@@ -303,7 +303,7 @@ function looseDisguises() {
 <input id="basicexits" name="basicexits" type="checkbox" value="basicexits" checked/> <label title="Basic exits with no special conditions." for="basicexits"> Basic Exits</label><br />
 <input id="lockedexits" name="lockedexits" type="checkbox" value="lockedexits" checked/> <label title="Basic exits that require keys, items, or disguises to access." for="lockedexits"> Locked Exits</label><br />
 <input id="hardexits" name="hardexits" type="checkbox" value="hardexits"/> <label title="Adds difficult / easter egg exits, such as the flamingo exit in Miami or the window exit in New York. Not available for all missions and generally not recommended." for="hardexits"> Difficult Exits</label><br />
-<input id="exitdisguise" name="exitdisguise" type="checkbox" value="exitdisguise" checked/> <label title="Adds a disguise that you must wear when you exit the mission. Chooses from the same disguises specified in the chosen Disguise Conditions." for="exitdisguise"> Require Disguises</label>
+<input id="exitdisguise" name="exitdisguise" type="checkbox" value="exitdisguise"/> <label title="Adds a disguise that you must wear when you exit the mission. Chooses from the same disguises specified in the chosen Disguise Conditions." for="exitdisguise"> Require Disguises</label>
 <h2><u>Other Options</u></h2>
 <input id="objroulette" name="objroulette" type="checkbox" value="objroulette" checked/> <label title="Randomize mission objective conditions, like the Virus in Sapienza or the Data in New York." for="objroulette"> Objective Roulette</label><br />
 <input id="pickups" name="pickups" type="checkbox" value="pickups" checked/> <label title="Randomize the mission's Agency Pickup location." for="pickups"> Agency Pickup Roulette</label><br />
@@ -1142,7 +1142,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         <!--------------------------------------------- EXITS -->
         if (document.getElementById("basicexits").checked == true){
         
-          possibleexits.push("Exit via Basement", "Exit via Helicopter", "Exit via North Main Gates", "Exit via Main Gates", "Exit via South Main Gates");
+          possibleexits.push("Exit via the Basement", "Exit via Helicopter", "Exit via North Main Gates", "Exit via Main Gates", "Exit via South Main Gates");
         }
         if (document.getElementById("lockedexits").checked == true){
         
