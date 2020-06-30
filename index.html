@@ -57,7 +57,6 @@ body {
   background-color: "#DEDEDE";
 }
 </style>
-<!--background-image: url('https://i.ibb.co/jMwXWbv/WoALogo.png');-->
 </head>
 <body style="font-family:calibri; font-size: 16px;">
 <h1 style="font-family:Microsoft JhengHei UI">WORLD OF ASSASSINATION ROULETTE</h1>
@@ -109,7 +108,7 @@ body {
 <option style="background-color: #6a6974;" value="isleofsgail">The Ark Society (Isle of Sg&agrave;il)</option>
 <option style="background-color: #a49335;" value="newyork">Golden Handshake (New York)</option>
 <option style="background-color: #00d8a3;" value="havenisland">The Last Resort (Haven Island)</option>
-<option style="background-color: #f9f9c2;" value="dubai">????? (Dubai)</option>
+<option style="background-color: #ffe3cf;" value="dubai">????? (Dubai)</option>
 </select>
 <br />
 <button onclick="advance()">Advance to Next Mission</button>
@@ -151,7 +150,7 @@ function bgChange() {
     } else if (x == "havenisland"){
     document.body.style.backgroundColor = "#00d8a3";
     } else if (x == "dubai"){
-    document.body.style.backgroundColor = "#f9f9c2";
+    document.body.style.backgroundColor = "#ffe3cf";
   } else {
     document.body.style.backgroundColor = "#ffffff";
   }
@@ -163,24 +162,6 @@ function bgChange() {
 <input id="ilblunt" name="ilblunt" type="checkbox" value="ilblunt"/ checked> <label title="Nonlethal weapons found naturally in the chosen mission. Knock out with the weapon, then kill with any method to complete." for="ilblunt">In-Level Nonlethal Weapons</label><br />
 <input id="ilexplosion" name="ilexplosion" type="checkbox" value="ilexplosion" checked/> <label title="Explosives found naturally in the chosen mission." for="ilexplosion">In-Level Explosives</label><br />
 <input id="ilaccident" name="ilaccident" type="checkbox" value="ilaccident" checked/> <label title="Accidents that are naturally possible and poisons that can be found naturally in the chosen mission." for="ilaccident">In-Level Accidents / Poisons</label><br />
-<!--<p><u>Must Dos:</u></p>
-<p><i>To Do: Add a "Next Mission" button to advance to the next mission in the campaign</i></p>
-<p><i>To Do: Add Objective Roulette for Whittleton Clues</i></p>
-<p><i>To Do: Research Guard-only Guns</i></p>
-<p><i>To Do: Loadout Roulette</i></p>
-<p><i>To Do: Make the Random Mission selection actually work or otherwise change it</i></p>
-<p><i>To Do: Randomize items for Pickup Roulette (maybe merge with Loadout Roulette?)</i></p>
-<p><i>To Do: Even out kill condition possibilities / Make sure they seem balanced enough</i></p>
-<p><i>To Do: Fix contradictory conditions (i.e., "Kill Morgan with Tuk-Tuk," "Exit via Tuk-Tuk") or multiple kill conditions using the same unique single-use weapons (i.e., "Kill with Letterbomb Parcel x2")</i></p>
-<p><i>To Do: Apply the "Soders/Yamazaki" method to all missions with target-exclusive kill conditions</i></p>
-<p><i>To Do: Extreme conditions option (require long-distance dragging, usually for accident kills) (after Soders/Yamazaki fix)</i></p>
-<p><i>To Do: Add "Retry" function to combat faulty rolls</i></p>
-
-<p><u>Less Important Dos:</u></p>
-<p><i>To Do: Lethal conditions after nonlethal KOs option</i></p>
-<p><i>To Do: Remove Specific Accidents until you have time to implement a workaround for targets 2,3,4 inheriting conditions from target 1</i></p>
-<p><i>To Do: Add super-specific kill conditions that require a certain disguise (i.e., Masseur vs Strandberg in Marrakesh) or multi-kills (i.e. the server room in Haven or pushing Dalia onto Viktor)</i></p>-->
-
 
 <input id="lomelee" name="lomelee" type="checkbox" value="lomelee"/> <label title="Lethal melee weapons that can only be chosen through the loadout screen.
 (May require unlocking weapons via Challenges and are more likely to be rolled than in-level weapons.)" for="lomelee">Loadout Melee Weapons</label><br />
@@ -192,7 +173,7 @@ function bgChange() {
 (May require unlocking weapons via Challenges and are more likely to be rolled than in-level weapons.)" for="loexplosion">Loadout Explosives</label><br />
 <input id="loaccident" name="loaccident" type="checkbox" value="loaccident"/> <label title="Accidents that are possible only with items / poisons in the loadout screen. 
 (May require unlocking weapons via Challenges and are more likely to be rolled than in-level weapons.)" for="loaccident">Loadout Accidents / Poisons</label><br />
-<input id="guardguns" name="guardguns" type="checkbox" value="guardguns"/> <label title="Firearms that cannot be picked up normally in the level and must be taken from guards. Guard-only guns are always designated by their exact names." for="guardguns">Guard-Only Guns</label><br />
+<!--<input id="guardguns" name="guardguns" type="checkbox" value="guardguns"/> <label title="Firearms that cannot be picked up normally in the level and must be taken from guards. Guard-only guns are always designated by their exact names." for="guardguns">Guard-Only Guns</label><br />-->
 <input id="adsnipers" name="adsnipers" type="checkbox" value="adsnipers"/> <label title="Adds a chance for 'Sniper Assassination' conditions to appear. These can be any kill you like, as long as the kill in question is triggered by you firing a sniper rifle (i.e., blowing up a propane flask). Functions independently from 'Loadout Ranged Weapons.'" for="adsnipers">Sniper Assassinations</label><br />
 <!--<input id="kokills" name="kokills" type="checkbox" value="kokills"/> <label title="" for="kokills">Require Nonlethal KO's before Kills</label>-->
 <br />
@@ -210,7 +191,6 @@ function bgChange() {
 </ul>
 <input style="margin-left: 25px" id="nocommonmelee" name="nocommonmelee" type="checkbox" value="nocommonmelee" checked/> <label title="Removes the following items from the possible in-level melee kill conditions: Hammer, Wrench, Crowbar, Propane Flask, Fire Extinguisher, Soda Can, Shovel, Brick, Bust, Leather Briefcase, Spaghetti Can, Car Battery, Coconut, Baseball, Iron, Lead Pipe, Screwdriver, Kitchen Knife, Cleaver, Scissors, and Letter Opener, as well as a few others on a case-by-case basis.
 Bust is kept for ICA Facility missions due to lack of weapon variety." for="nocommonmelee"> Trim Down Melee Weapons</label><br /><br />
-<!--<input style="margin-left: 25px" id="nocommonmelee" name="nocommonmelee" type="checkbox" value="nocommonmelee" checked/> <label title="Limits each level's possible melee weapon conditions to be more in keeping with other categories. Removes all but a handful of both lethal and nonlethal weapons from each level, usually based on item uniqueness / rarity." for="nocommonmelee"> Trim Down Melee Weapons</label><br /><br />-->
 <select id="guns" name="guns">
 <option value="basicguns">Ranged Weapons by Type</option>
 <option value="loudguns">Ranged Weapons by Gun Type and Loudness</option>
@@ -244,7 +224,6 @@ Bust is kept for ICA Facility missions due to lack of weapon variety." for="noco
   <li><i>Accidents / Poisons by Type</i>:  Designates accidents based on type (drowning, falling object, electrocution, etc.)</li>
   <li><i>Generic Accidents / Poisons Only</i>:  Only designates "Kill in an accident" and "Kill with poison" conditions.</li>
 </ul>
-<!--<input id="weightkills" name="weightkills" type="checkbox" value="weightkills" checked/> <label title="When checked, evens likelihood of kill condition categories. For example, by default, there are more melee and ranged weapons than accident types, so those end up being more likely." for="weightkills">Weight Kill Conditions</label><br />-->
 <h2><u>Disguise Conditions</u></h2>
 <input id="nodisguise" name="nodisguise" type="checkbox" value="nodisguise"  onclick="noDisguises()"/> <label title="Removes disguise conditions from results." for="nodisguise">No Designated Disguises</label><br />
 <input id="loosesuit" name="loosesuit" type="checkbox" value="loosesuit" onclick="looseDisguises()"/> <label title="Limits options to disguises that can be found naturally in the chosen mission. Ideal for no pacifications runs." for="loosesuit"> Loose Disguises Only</label><br />
@@ -332,8 +311,6 @@ function looseDisguises() {
 <input id="objroulette" name="objroulette" type="checkbox" value="objroulette" checked/> <label title="Randomize mission objective conditions, like the Virus in Sapienza or the Data in New York." for="objroulette"> Objective Roulette</label><br />
 <input id="pickups" name="pickups" type="checkbox" value="pickups" checked/> <label title="Randomize the mission's Agency Pickup location." for="pickups"> Agency Pickup Roulette</label><br />
 <input id="crazywarnings" name="crazywarnings" type="checkbox" value="crazywarnings" checked/> <label title="With this checked, you will receive a popup alerting you of insanely difficult accident kill conditions. Ignore them at your own peril." for="crazywarnings"> Crazy Condition Warnings</label><br />
-<!--<input id="pickupitems" name="pickupitems" type="checkbox" value="pickupitems" checked/> <label title="Along with the Pickup Roulette, generates a random loadout item to be in it.
-Does nothing if checked without Pickup Roulette." for="pickupitems"> Pickup Roulette Items</label><br />-->
 <input id="wkale" name="wkale" type="checkbox" value="wkale"/> <label for="wkale"> Display Maelstrom as Wazir Kale</label><br />
 <h2><u>Scorecard</u></h2>
 <div class="row solid">
@@ -404,15 +381,7 @@ if(document.getElementById('v0').value =="" && document.getElementById('v1').val
 }
 }
 </script>
-<!--<h2><u>Scavenger Hunt Mode</u></h2>
-<p><i>(To do)</i></p>
-<br />
-<p>
-  Other shit
-</p>
-<input id="necksnap" name="necksnap" type="checkbox" value="necksnap" /> <label title="Adds Neck Snap to possible kill conditions." for="necksnap">Generic Neck Snaps</label>
-<br />
-<br />-->
+
 <br />
 <br />
 <button onclick="preroulette()">Reroll Roulette</button>
@@ -5830,22 +5799,6 @@ bgchange();
 }
 </script>
 
-<!--<script>
-function checkstrikes() {
-if (strikes >= 5){
-var strikes = 0;
-alert("Error: Undefined kill condition. Adjust your options for this mission.");
-selectElement('mission', 'rando');
-roulette();
-} else if (strikes < 5) {
-roulette();
-}
-}
-</script>-->
-
-<!--<script>
-function reroll() {-->
-
 
 
 <br />
@@ -5855,7 +5808,6 @@ function reroll() {-->
   <li>Adding an option for specific kill conditions post-pacification (i.e., "Kill Kalvin Ritter with a pistol after pacifying him with a Bust.")</li>
   <li>Full compatibility with Hitman 3 after it comes out.</li>
   <li>A way to import/export option presets, plus a personal High Score option (maybe).</li>
-  <!--<li>Fixing impossible combinations (i.e., "Kill Ken Morgan with an exploding Tuk-Tuk" alongside "Exit via Tuk-Tuk.")</li>-->
   <li>More unique kill conditions (i.e., Pushing Dalia onto Viktor, massaging Strandberg, etc.)</li>
   <li>Adjusting kill condition probabilities and fixing other bugs.</li>
   <li>Anything else that gets suggested that I can manage to put in!</i></li>
@@ -5865,7 +5817,7 @@ function reroll() {-->
 <br />
 <br />
 <p><i>Made by 3FacedJanus, aka BTWNM. Hitman is (TM) IO Interactive.</i></p>
-<p><i>Special thanks to <a href="https://thekotti.github.io/hitman.html">Kotti</a>, <a href="https://www.hitmaps.com/">Hitmaps.com</a>, and everyone at IOI.</i></p>
+<p><i>Special thanks to <a href="https://thekotti.github.io/hitman.html">Kotti</a>, <a href="https://www.hitmaps.com/">Hitmaps.com</a>, and everyone at <a href="https://www.ioi.dk/">IOI.</a></i></p>
 <br />
 </ol>
 </body>
