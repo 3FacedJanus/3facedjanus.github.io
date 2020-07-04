@@ -171,8 +171,8 @@ function bgChange() {
 (May require unlocking weapons via Challenges and are more likely to be rolled than in-level weapons.)" for="loexplosion">Loadout Explosives</label><br />
 <input id="loaccident" name="loaccident" type="checkbox" value="loaccident"/> <label title="Accidents that are possible only with items / poisons in the loadout screen. 
 (May require unlocking weapons via Challenges and are more likely to be rolled than in-level weapons.)" for="loaccident">Loadout Accidents / Poisons</label><br />
-<input id="adsnipers" name="adsnipers" type="checkbox" value="adsnipers"/> <label title="Adds a chance for 'Sniper Assassination' conditions to appear. These can be any kill you like, as long as the kill in question is triggered by you firing a sniper rifle (i.e., blowing up a propane flask). Functions independently from 'Loadout Ranged Weapons.'" for="adsnipers">Sniper Assassinations</label><br />
-<!--<input id="kokills" name="kokills" type="checkbox" value="kokills"/> <label title="" for="kokills">Require Nonlethal KO's before Kills</label>-->
+<input id="adsnipers" name="adsnipers" type="checkbox" value="adsnipers"/> <label title="Adds a chance for 'Sniper Assassination' conditions to appear. These can be any kill you like, as long as the kill in question is triggered by you firing a sniper rifle (i.e., blowing up a propane flask or dropping a chandelier). Functions independently from 'Loadout Ranged Weapons.'" for="adsnipers">Sniper Assassinations</label><br />
+<!--<input id="kokills" name="kokills" type="checkbox" value="kokills"/> <label title="If the roulette creates a kill condition involving a nonlethal weapon, it will additionally generate a specific kill method that must be performed after pacifying with the nonlethal weapon." for="kokills">Post-Pacify Kill Conditions</label>-->
 <br />
 
 <br />
@@ -400,6 +400,7 @@ function roulette() {
     var whittletoncluesmeetingmethod = [];
     var whittletoncluesnovember13thmethod = [];
     var whittletoncluesarksocietymethod = [];
+    var contradictorykills = false;
     var x = document.getElementById("mission").value;
     if (x == "rando"){
     document.getElementById("missiontitle").innerHTML = ""
@@ -1142,7 +1143,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         <!--------------------------------------------- EXITS -->
         if (document.getElementById("basicexits").checked == true){
         
-          possibleexits.push("Exit via the Basement", "Exit via Helicopter", "Exit via North Main Gates", "Exit via Main Gates", "Exit via South Main Gates");
+          possibleexits.push("Exit via the Basement", "Exit via Helicopter", "Exit via South Garden Gates", "Exit via Red Carpet Gates", "Exit via Parking Area Gates");
         }
         if (document.getElementById("lockedexits").checked == true){
         
@@ -3495,6 +3496,8 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         } else {
      document.getElementById("startconditions").innerHTML = "";
         }
+        
+        disguisemethod = " while disguised as the Pale Rider."
      
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/dB3iEWa.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill Robert Knox " + killmethod + disguisemethod;
@@ -3517,6 +3520,9 @@ document.getElementById("target3pic").innerHTML = ''; document.getElementById("t
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
         if (document.getElementById("randoexits").checked == true){
+        if (exitmethod == "Exit via Ambulance"){
+        exitdisguisemethod = " while disguised as a Medic."
+        }
      document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
         } else {
      document.getElementById("exitconditions").innerHTML = "";
@@ -4440,6 +4446,9 @@ document.getElementById("target3pic").innerHTML = ''; document.getElementById("t
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
         if (document.getElementById("randoexits").checked == true){
+        if (exitmethod == "Exit via Garbage Truck"){
+        exitdisguisemethod = " while disguised as a Garbage Man."
+        }
      document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
         } else {
      document.getElementById("exitconditions").innerHTML = "";
@@ -4742,6 +4751,9 @@ document.getElementById("target3pic").innerHTML = ''; document.getElementById("t
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
         if (document.getElementById("randoexits").checked == true){
+        if (exitmethod == "Exit via Swan Dive"){
+        exitdisguisemethod = " while disguised as Blake Nathaniel."
+        }
      document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
         } else {
      document.getElementById("exitconditions").innerHTML = "";
@@ -5027,7 +5039,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      var objectivesmethod = possibleobjectives[Math.floor(Math.random() * possibleobjectives.length)];
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/fvrCrr1.png\' width="100%" height="100%">';
-     document.getElementById("target2killconditions").innerHTML = objectivesmethod + disguisemethod;
+     document.getElementById("target2killconditions").innerHTML = objectivesmethod;
 } else {
 document.getElementById("target2pic").innerHTML = ''; document.getElementById("target2killconditions").innerHTML = "";
 }
@@ -5037,6 +5049,9 @@ document.getElementById("target3pic").innerHTML = ''; document.getElementById("t
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
         if (document.getElementById("randoexits").checked == true){
+        if (exitmethod == "Exit via Window"){
+        exitdisguisemethod = " while disguised as an Investment Banker."
+        }
      document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
         } else {
      document.getElementById("exitconditions").innerHTML = "";
@@ -5341,6 +5356,9 @@ document.getElementById("target3killconditions").innerHTML = "Kill Steven Bradle
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
 
         if (document.getElementById("randoexits").checked == true){
+        if (exitmethod == "Exit via Snorkel"){
+        exitdisguisemethod = " while disguised as a Snorkel Instructor."
+        }
      document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
         } else {
      document.getElementById("exitconditions").innerHTML = "";
