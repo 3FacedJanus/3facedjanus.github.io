@@ -2870,7 +2870,7 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart");
+          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by making Dr. Laurent kill him", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by making Dr. Laurent kill him", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by making Dr. Laurent kill him", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by making Dr. Laurent kill him", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by making Dr. Laurent kill him", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by making Dr. Laurent kill him");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
@@ -2987,7 +2987,7 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Baseball Player.", " while disguised as a Chief Surgeon.", " while disguised as a Helicopter Pilot.", " while disguised as the Hospital Director.", " while disguised as a Motorcyclist.", " while disguised as Amos Dexter (VIP Patient).", " while disguised as Jason Portman (VIP Patient).", " while disguised as a Yoga Instructor.", " while disguised as a VIP Patient.");
+          possibledisguises.push(" while disguised as a Baseball Player.", " while disguised as the Chief Surgeon.", " while disguised as a Helicopter Pilot.", " while disguised as the Hospital Director.", " while disguised as a Motorcyclist.", " while disguised as Amos Dexter (VIP Patient).", " while disguised as Jason Portman (VIP Patient).", " while disguised as a Yoga Instructor.", " while disguised as a VIP Patient.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
@@ -3019,7 +3019,7 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         var possiblekills = [];
         var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart");
+          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by making Dr. Laurent kill him");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
@@ -3039,6 +3039,10 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
      
      if (killmethod == null) {
      errorreset();
+     }
+        
+     if (killmethod == "by draining his blood"){
+     exitdisguisemethod = " while disguised as the Chief Surgeon."
      }
     
     document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/7g4Jn8g.png\' width="100%" height="100%">';
@@ -4238,7 +4242,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
      
      if (document.getElementById("wkale").checked == false){
-     document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/6T3UtSm.png\' width="100%" height="100%">';
+     document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/RwmnB1L.png\' width="100%" height="100%">';
      document.getElementById("target1killconditions").innerHTML = "Kill the Maelstrom " + killmethod + disguisemethod;
      } else if (document.getElementById("wkale").checked == true){
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/RwmnB1L.png\' width="100%" height="100%">';
@@ -4268,7 +4272,19 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
 
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/Xb2pOtJ.png\' width="100%" height="100%">'; document.getElementById("target3killconditions").innerHTML = "Kill Dawood Rangan " + killmethod + disguisemethod;
 
+     if (document.getElementById("objroulette").checked == true){
+     var startmethod = possiblestarts[Math.floor(Math.random() * possiblestarts.length)];
+     var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
+     var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
+     var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     var possibleobjectives = ["Identify the Maelstrom with the barber's picture.", "Identify the Maelstrom with the Food District NPC's photo.", "Idenitfy the Maelstrom with Rangan's picture."];
+     var objectivesmethod = possibleobjectives[Math.floor(Math.random() * possibleobjectives.length)];
+    
+    document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.com/6T3UtSm.png\' width="100%" height="100%">';
+     document.getElementById("target4killconditions").innerHTML = objectivesmethod;
+} else {
 document.getElementById("target4pic").innerHTML = ''; document.getElementById("target4killconditions").innerHTML = "";
+}
 
         if (document.getElementById("randoexits").checked == true){
      document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
