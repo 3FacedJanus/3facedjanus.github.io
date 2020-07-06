@@ -57,7 +57,9 @@ body {
 </style>
 </head>
 <body style="font-family:calibri; font-size: 16px;">
-<h1 style="font-family:Microsoft JhengHei UI">WORLD OF ASSASSINATION ROULETTE</h1>
+<span style="font-family:Microsoft JhengHei UI; font-size: 30px; font-weight: bold;">WORLD OF ASSASSINATION ROULETTE</span>
+<br />
+<span>Version 1.11</span>
 <hr>
 <button onclick="preroulette()">Reroll Roulette</button>
 <button onclick="advance()">Advance to Next Mission</button>
@@ -313,6 +315,7 @@ function looseDisguises() {
 <input id="objroulette" name="objroulette" type="checkbox" value="objroulette" checked/> <label title="Randomize mission objective conditions, like the Virus in Sapienza or the Data in New York." for="objroulette"> Objective Roulette</label><br />
 <input id="pickups" name="pickups" type="checkbox" value="pickups" checked/> <label title="Randomize the mission's Agency Pickup location." for="pickups"> Agency Pickup Roulette</label><br />
 <input id="crazywarnings" name="crazywarnings" type="checkbox" value="crazywarnings" checked/> <label title="With this checked, you will receive a popup alerting you of insanely difficult accident kill conditions. Ignore them at your own peril." for="crazywarnings"> Crazy Condition Warnings</label><br />
+<input id="safesoders" name="safesoders" type="checkbox" value="safesoders" checked/> <label title="Killing Soders with melee weapons and other such direct approaches is a guaranteed SA fail unless you go through the rigorous process of pacifying everyone in the operating theater. Check this box to make Soders' kill conditions more score-friendly by limiting them to his surgery-related kills." for="safesoders"> Silent Assassin Mode for Erich Soders</label><br />
 <input id="wkale" name="wkale" type="checkbox" value="wkale"/> <label for="wkale"> Display Maelstrom as Wazir Kale</label><br />
 <h2><u>Scorecard</u></h2>
 <div class="row solid">
@@ -2867,7 +2870,7 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart");
+          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
@@ -2876,7 +2879,7 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
           possiblekills.push();
         }
         if (y == "genericaccidents"){
-          possiblekills.push("in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident");
+          possiblekills.push("in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident");
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -3010,6 +3013,23 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (document.getElementById("exitdisguise").checked == false){
         
           var exitdisguisemethod = ".";
+        }
+        
+        if (document.getElementById("safesoders").checked == true){
+        var possiblekills = [];
+        var y = document.getElementById("accidents").value;
+          if (y == "basicaccidents"){
+          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push();
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in a surgery-related accident");
+        }
         }
 
      var startmethod = possiblestarts[Math.floor(Math.random() * possiblestarts.length)];
