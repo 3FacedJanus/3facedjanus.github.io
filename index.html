@@ -318,7 +318,7 @@ function looseDisguises() {
 <input id="crazywarnings" name="crazywarnings" type="checkbox" value="crazywarnings" checked/> <label title="With this checked, you will receive a popup alerting you of insanely difficult accident kill conditions. Ignore them at your own peril." for="crazywarnings"> Crazy Condition Warnings</label><br />
 <input id="safesoders" name="safesoders" type="checkbox" value="safesoders" checked/> <label title="Check this box to make Soders' kill conditions a bit more score-friendly by limiting them to his surgery-related kills." for="safesoders"> Surgical Assassin Mode for Erich Soders</label><br />
 <input id="wkale" name="wkale" type="checkbox" value="wkale"/> <label for="wkale"> Display Maelstrom as Wazir Kale</label><br />
-<input id="constantkos" name="constantkos" type="checkbox" value="constantkos"/> <label title="While checked along with Objective Roulette, this will make the Constant always have a pacify condition and with a specific nonlethal melee weapon." for="constantkos"> Constant KO Conditions</label><br />
+<input id="constantkos" name="constantkos" type="checkbox" value="constantkos"/> <label title="While checked along with Objective Roulette, this will make the Constant always have a pacify condition and with a specified nonlethal method, as determined by your Kill Conditions settings." for="constantkos"> Constant KO Conditions</label><br />
 <h2><u>Scorecard</u></h2>
 <div class="row solid">
 <span class="scorecardline1" style="background-color:#ead3a3; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 18px; float:left;">ICA Facility - Freeform Training</span>
@@ -5066,6 +5066,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      var possibleobjectives = ["Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Pacify the Constant.", "Escort the Constant to the pier before completing the mission."];
      }
      var objectivesmethod = possibleobjectives[Math.floor(Math.random() * possibleobjectives.length)];
+     
+     if (objectivesmethod == null) {
+     constantreset();
+     }
 
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/J1UkhCQ.jpg\' width="100%" height="100%">'; document.getElementById("target3killconditions").innerHTML = objectivesmethod;
 } else if (document.getElementById("objroulette").checked == false) {
@@ -6158,6 +6162,27 @@ bgchange();
 <script>
 function icareset() {
 alert("Error: ICA Facility missions do not allow loadouts. Adjust your options for this mission.");
+document.getElementById("missiontitle").innerHTML = ""; 
+document.getElementById("pickupconditions").innerHTML = "";   
+document.getElementById("startconditions").innerHTML = "";
+document.getElementById("target1pic").innerHTML = '';
+document.getElementById("target1killconditions").innerHTML = "";
+document.getElementById("target2pic").innerHTML = '';
+document.getElementById("target2killconditions").innerHTML = "";
+document.getElementById("target3pic").innerHTML = '';
+document.getElementById("target3killconditions").innerHTML = "";
+document.getElementById("target4pic").innerHTML = '';
+document.getElementById("target4killconditions").innerHTML = "";
+document.getElementById("exitconditions").innerHTML = "";
+selectElement('mission', 'rando');
+document.body.style.backgroundColor = "#ffffff";
+bgchange();
+}
+</script>
+
+<script>
+function constantreset() {
+alert("Error: You must allow In-Level Nonlethal Weapons or Loadout Nonlethal Weapons in order to use the Constant KO Conditions option.");
 document.getElementById("missiontitle").innerHTML = ""; 
 document.getElementById("pickupconditions").innerHTML = "";   
 document.getElementById("startconditions").innerHTML = "";
