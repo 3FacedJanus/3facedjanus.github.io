@@ -59,9 +59,10 @@ body {
 <body style="font-family:calibri; font-size: 16px;">
 <span style="font-family:Microsoft JhengHei UI; font-size: 30px; font-weight: bold;">WORLD OF ASSASSINATION ROULETTE</span>
 <br />
-<span>Version 1.12</span>
+<span>Version 1.2</span>
 <hr>
 <button onclick="preroulette()">Reroll Roulette</button>
+<button onclick="randommission()">Random Mission</button>
 <button onclick="advance()">Advance to Next Mission</button>
 <br />
 <br />
@@ -317,6 +318,7 @@ function looseDisguises() {
 <input id="crazywarnings" name="crazywarnings" type="checkbox" value="crazywarnings" checked/> <label title="With this checked, you will receive a popup alerting you of insanely difficult accident kill conditions. Ignore them at your own peril." for="crazywarnings"> Crazy Condition Warnings</label><br />
 <input id="safesoders" name="safesoders" type="checkbox" value="safesoders" checked/> <label title="Check this box to make Soders' kill conditions a bit more score-friendly by limiting them to his surgery-related kills." for="safesoders"> Surgical Assassin Mode for Erich Soders</label><br />
 <input id="wkale" name="wkale" type="checkbox" value="wkale"/> <label for="wkale"> Display Maelstrom as Wazir Kale</label><br />
+<input id="constantkos" name="constantkos" type="checkbox" value="constantkos"/> <label title="While checked along with Objective Roulette, this will make the Constant always have a pacify condition and with a specific nonlethal melee weapon." for="constantkos"> Constant KO Conditions</label><br />
 <h2><u>Scorecard</u></h2>
 <div class="row solid">
 <span class="scorecardline1" style="background-color:#ead3a3; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 18px; float:left;">ICA Facility - Freeform Training</span>
@@ -387,9 +389,20 @@ if(document.getElementById('v0').value =="" && document.getElementById('v1').val
 }
 </script>
 
+<script>
+function randommission() {
+    var possiblemissions = ["sydney", "cuba", "paris", "sapienza", "marrakesh", "bangkok", "colorado", "hokkaido", "hawkesbay", "miami", "santafortuna", "mumbai", "whittletoncreek", "isleofsgail", "newyork", "havenisland"];
+    var missionmethod = possiblemissions[Math.floor(Math.random() * possiblemissions.length)];
+    selectElement('mission', missionmethod);
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+    roulette();
+    }
+</script>
+
 <br />
 <br />
 <button onclick="preroulette()">Reroll Roulette</button>
+<button onclick="randommission()">Random Mission</button>
 <button onclick="advance()">Advance to Next Mission</button>
 <!--------------------------------------------------------------------------------------- ROULETTE STARTS HERE -->
 <script>
@@ -671,6 +684,10 @@ function roulette() {
      if (killmethod == null) {
      errorreset();
      }
+     
+     if (disguisemethod == null) {
+     disguisereset();
+     }
 
      document.getElementById("pickupconditions").innerHTML = "";   
         
@@ -939,6 +956,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
      document.getElementById("pickupconditions").innerHTML = ""
         
      if (document.getElementById("randostarts").checked == true){
@@ -1034,10 +1055,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive");
+          possiblekills.push("with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion");
+          possiblekills.push("with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -1230,6 +1251,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      crazywarning();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -1252,6 +1277,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      
      if (killmethod == null) {
      errorreset();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/4RH4lSo.png\' width="100%" height="100%">';
@@ -1533,6 +1562,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      crazywarning();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -1567,6 +1600,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      
      if (killmethod == null) {
      errorreset();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/iYFDeIc.png\' width="100%" height="100%">';
@@ -1662,10 +1699,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive");
+          possiblekills.push("with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion");
+          possiblekills.push("with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -1858,6 +1895,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      crazywarning();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -1880,6 +1921,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      
      if (killmethod == null) {
      errorreset();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/zAv0tNj.png\' width="100%" height="100%">';
@@ -1967,10 +2012,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
+          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -2163,6 +2208,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      crazywarning();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -2187,6 +2236,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      } else if (killmethod == "by electrocution") {
      crazywarning();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/PbMyivI.png\' width="100%" height="100%">';
@@ -2275,10 +2328,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive");
+          possiblekills.push("with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion");
+          possiblekills.push("with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -2472,6 +2525,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      crazywarning();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -2497,6 +2554,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      } else if (killmethod == "by electrocution") {
      crazywarning();
      }
+     
+     if (disguisemethod == null) {
+     disguisereset();
+     }
 
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/cTcmyiQ.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Penelope Graves " + killmethod + disguisemethod;
@@ -2513,6 +2574,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      } else if (killmethod == "by drowning") {
      crazywarning();
      }
+     
+     if (disguisemethod == null) {
+     disguisereset();
+     }
 
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/EbwuyKh.png\' width="100%" height="100%">';
 
@@ -2528,6 +2593,10 @@ document.getElementById("target3killconditions").innerHTML = "Kill Ezra Berg " +
      errorreset();
      } else if (killmethod == "by electrocution") {
      crazywarning();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
 
 document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.com/5o6lgzE.png\' width="100%" height="100%">'; document.getElementById("target4killconditions").innerHTML = "Kill Maya Parvati " + killmethod + disguisemethod;
@@ -2607,10 +2676,10 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
+          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -2780,6 +2849,10 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
      errorreset();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -2852,10 +2925,10 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
+          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -3023,7 +3096,7 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push();
+          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in a surgery-related accident");
@@ -3041,6 +3114,10 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         
      if (killmethod == "by draining his blood"){
      exitdisguisemethod = " while disguised as the Chief Surgeon."
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
     
     document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/7g4Jn8g.png\' width="100%" height="100%">';
@@ -3124,10 +3201,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive");
+          possiblekills.push("with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade");
+          possiblekills.push("with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -3316,6 +3393,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      
      if (killmethod == null) {
      errorreset();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
      
         if (document.getElementById("pickups").checked == true){
@@ -3606,6 +3687,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -3630,6 +3715,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      } else if (killmethod == "by drowning") {
      crazywarning();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/TnBoENw.png\' width="100%" height="100%">';
@@ -3716,7 +3805,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
+          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
           possiblekills.push("with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel");
@@ -3914,6 +4003,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -3937,6 +4030,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      if (killmethod == null) {
      errorreset();
      }
+     
+     if (disguisemethod == null) {
+     disguisereset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/ZKae95Z.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Andrea Martinez " + killmethod + disguisemethod;
@@ -3950,6 +4047,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      } else if (killmethod == "with a falling object") {
      crazywarning();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
 
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/qJ7NRIR.png\' width="100%" height="100%">';
@@ -4020,9 +4121,9 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
           if (y == "specificweapons"){
           if (document.getElementById("nocommonmelee").checked == false){
-          possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with an Iron", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Soda Can", "after pacifying with a Can of Expired Spaghetti Sauce", "after pacifying with a Lever", "after pacifying with a Shovel", "after pacifying with a Car Battery", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Brick", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake", "after pacifying with a Fish", "after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with an Iron", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Soda Can", "after pacifying with a Can of Expired Spaghetti Sauce", "after pacifying with a Lever", "after pacifying with a Shovel", "after pacifying with a Car Battery", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake");
+          possiblekills.push("after pacifying with a Wrench", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with an Iron", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Soda Can", "after pacifying with a Can of Expired Spaghetti Sauce", "after pacifying with a Lever", "after pacifying with a Shovel", "after pacifying with a Car Battery", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Brick", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Fish", "after pacifying with a Hammer", "after pacifying with a Fire Extinguisher", "after pacifying with a Propane Flask", "after pacifying with a Crowbar", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Soda Can", "after pacifying with a Can of Expired Spaghetti Sauce", "after pacifying with a Lever", "after pacifying with a Shovel", "after pacifying with a Car Battery", "after pacifying with a Lead Pipe", "after pacifying with a Frying Pan", "after pacifying with a Brick", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Fish");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake", "after pacifying with a Fish", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake", "after pacifying with a Fish", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake", "after pacifying with a Fish", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake", "after pacifying with a Fish", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Rake", "after pacifying with a Fish");
+          possiblekills.push("after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Fish", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Fish", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Fish", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Fish", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Fish", "after pacifying with a Baseball Bat", "after pacifying with a Khatvanga", "after pacifying with a Chennai Cricket Ball", "after pacifying with a Lever", "after pacifying with a Brick of Colored Smoke", "after pacifying with a Fish");
         }
         }
         if (y == "genericweapons"){
@@ -4033,10 +4134,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
+          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -4227,6 +4328,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -4255,6 +4360,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      if (killmethod == null) {
      errorreset();
      }
+     
+     if (disguisemethod == null) {
+     disguisereset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/tGeyxaO.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Vanya Shah " + killmethod + disguisemethod;
@@ -4266,6 +4375,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      
      if (killmethod == null) {
      errorreset();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
 
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/Xb2pOtJ.png\' width="100%" height="100%">'; document.getElementById("target3killconditions").innerHTML = "Kill Dawood Rangan " + killmethod + disguisemethod;
@@ -4363,7 +4476,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
+          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
           possiblekills.push("with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block");
@@ -4557,6 +4670,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -4581,6 +4698,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      } else if (killmethod == "with a fatal fall") {
      crazywarning();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/FBMT99z.png\' width="100%" height="100%">';
@@ -4679,10 +4800,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder");
+          possiblekills.push("with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -4873,6 +4994,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -4898,16 +5023,52 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      } else if (killmethod == "by electrocution") {
      crazywarning();
      }
+     
+     if (disguisemethod == null) {
+     disguisereset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/yWO5lLN.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Sophia Washington " + killmethod + disguisemethod;
      
      if (document.getElementById("objroulette").checked == true){
-var possibleobjectives = ["Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Pacify the Constant.", "Escort the Constant to the pier before completing the mission."];
-var objectivesmethod = possibleobjectives[Math.floor(Math.random() * possibleobjectives.length)];
+     var possibleobjectives = [];
+     if (document.getElementById("constantkos").checked == true){
+     if (document.getElementById("ilblunt").checked == true){
+     var y = document.getElementById("weapons").value;
+     if (y == "basicweapons"){
+          possibleobjectives.push("Pacify the Constant with a small nonlethal melee weapon.", "Pacify the Constant with a large nonlethal melee weapon.");
+        }
+          if (y == "specificweapons"){
+          if (document.getElementById("nocommonmelee").checked == false){
+          possibleobjectives.push("Pacify the Constant with a Wrench.", "Pacify the Constant with a Hammer.", "Pacify the Constant with a Fire Extinguisher.", "Pacify the Constant with a Propane Flask.", "Pacify the Constant with a Crowbar.", "Pacify the Constant with a Baseball Bat.", "Pacify the Constant with a Gold Idol.", "Pacify the Constant with a Meaty Bone.", "Pacify the Constant with a Soda Can.", "Pacify the Constant with a Can of Expired Spaghetti Sauce.", "Pacify the Constant with a Shovel.", "Pacify the Constant with a Car Battery.", "Pacify the Constant with a Lead Pipe.", "Pacify the Constant with a Brick.", "Pacify the Constant with a Bust.", "Pacify the Constant with a Branding Iron.", "Pacify the Constant with a Newspaper.", "Pacify the Constant with an Imperial Filigree Egg.", "Pacify the Constant with a Paddle.", "Pacify the Constant with a Golf Club.", "Pacify the Constant with a Maori Paddle.", "Pacify the Constant with an Iron.", "Pacify the Constant with a Cannonball.", "Pacify the Constant with a Khatvanga.", "Pacify the Constant with a Cigar Box.", "Pacify the Constant with a Cocaine Brick.", "Pacify the Constant with a Mace.", "Pacify the Constant with a Coconut.", "Pacify the Constant with a Cowboy Bust.", "Pacify the Constant with a Driftwood Log.", "Pacify the Constant with a Fire Poker.", "Pacify the Constant with a Torch.", "Pacify the Constant with a Fish.", "Pacify the Constant with a Frying Pan.", "Pacify the Constant with a Gold Idol.", "Pacify the Constant with a Khatvanga.", "Pacify the Constant with an Imperial Filigree Egg.");
+        } else if (document.getElementById("nocommonmelee").checked == true){
+          possibleobjectives.push("Pacify the Constant with a Gold Idol.", "Pacify the Constant with a Branding Iron.", "Pacify the Constant with an Imperial Filigree Egg.", "Pacify the Constant with a Paddle.", "Pacify the Constant with a Golf Club.", "Pacify the Constant with a Maori Paddle.", "Pacify the Constant with a Khatvanga.", "Pacify the Constant with a Cigar Box.", "Pacify the Constant with a Cocaine Brick.", "Pacify the Constant with a Mace.", "Pacify the Constant with a Cowboy Bust.", "Pacify the Constant with a Torch.", "Pacify the Constant with a Gold Idol.", "Pacify the Constant with a Branding Iron.", "Pacify the Constant with an Imperial Filigree Egg.", "Pacify the Constant with a Paddle.", "Pacify the Constant with a Golf Club.", "Pacify the Constant with a Maori Paddle.", "Pacify the Constant with a Khatvanga.", "Pacify the Constant with a Cigar Box.", "Pacify the Constant with a Cocaine Brick.", "Pacify the Constant with a Mace.", "Pacify the Constant with a Cowboy Bust.", "Pacify the Constant with a Torch.", "Pacify the Constant with a Gold Idol.", "Pacify the Constant with a Branding Iron.", "Pacify the Constant with an Imperial Filigree Egg.", "Pacify the Constant with a Paddle.", "Pacify the Constant with a Golf Club.", "Pacify the Constant with a Maori Paddle.", "Pacify the Constant with a Khatvanga.", "Pacify the Constant with a Cigar Box.", "Pacify the Constant with a Cocaine Brick.", "Pacify the Constant with a Mace.", "Pacify the Constant with a Cowboy Bust.", "Pacify the Constant with a Torch.");
+        }
+        }
+        if (y == "genericweapons"){
+          possibleobjectives.push("Pacify the Constant with a nonlethal melee weapon.");
+        }
+     }
+     if (document.getElementById("loblunt").checked == true){
+     var y = document.getElementById("weapons").value;
+     if (y == "basicweapons"){
+          possibleobjectives.push("Pacify the Constant with a small nonlethal melee weapon.", "Pacify the Constant with a large nonlethal melee weapon.");
+        }
+          if (y == "specificweapons"){
+          possibleobjectives.push("Pacify the Constant with A New Bat.", "Pacify the Constant with a Concealable Baton.", "Pacify the Constant with a Crystal Ball.", "Pacify the Constant with a Feather Duster.", "Pacify the Constant with a Fish.", "Pacify the Constant with an HF Championship Bat.", "Pacify the Constant with a Mace.", "Pacify the Constant with a Meaty Bone.", "Pacify the Constant with an Okinawan Tonfa.", "Pacify the Constant with a Small Goldbar.", "Pacify the Constant with a Snowball.", "Pacify the Constant with a Violin.", "Pacify the Constant with a Claw Hammer.", "Pacify the Constant with a Black Leather Briefcase.", "Pacify the Constant with an ICA Titanium Crowbar.", "Pacify the Constant with the ICA Executive Briefcase Mk II.", "Pacify the Constant with an ICA Executive Briefcase.", "Pacify the Constant with an Aluminum Travel Briefcase.", "Pacify the Constant with an Arctic Toolbox.", "Pacify the Constant with an ICA Briefcase.", "Pacify the Constant with A New Bat.", "Pacify the Constant with a Concealable Baton.", "Pacify the Constant with a Crystal Ball.", "Pacify the Constant with a Feather Duster.", "Pacify the Constant with a Fish.", "Pacify the Constant with an HF Championship Bat.", "Pacify the Constant with a Mace.", "Pacify the Constant with a Meaty Bone.", "Pacify the Constant with an Okinawan Tonfa.", "Pacify the Constant with a Small Goldbar.", "Pacify the Constant with a Snowball.", "Pacify the Constant with a Violin.", "Pacify the Constant with a Claw Hammer.", "Pacify the Constant with the ICA Executive Briefcase Mk II.", "Pacify the Constant with an ICA Executive Briefcase.", "Pacify the Constant with an ICA Briefcase.");
+        }
+        if (y == "genericweapons"){
+          possibleobjectives.push("Pacify the Constant with a nonlethal melee weapon.");
+        }
+     }
+     } else if (document.getElementById("constantkos").checked == false) {
+     var possibleobjectives = ["Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Pacify the Constant.", "Escort the Constant to the pier before completing the mission."];
+     }
+     var objectivesmethod = possibleobjectives[Math.floor(Math.random() * possibleobjectives.length)];
 
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/J1UkhCQ.jpg\' width="100%" height="100%">'; document.getElementById("target3killconditions").innerHTML = objectivesmethod;
-} else {
+} else if (document.getElementById("objroulette").checked == false) {
 document.getElementById("target3pic").innerHTML = ''; document.getElementById("target3killconditions").innerHTML = "";
 }
 
@@ -4991,10 +5152,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
+          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel");
+          possiblekills.push("with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -5189,6 +5350,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -5300,10 +5465,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
+          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive");
+          possiblekills.push("with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -5494,6 +5659,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "Set an Agency Pickup " + pickupsmethod + ".";
         } else {
@@ -5517,6 +5686,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      if (killmethod == null) {
      errorreset();
      }
+     
+     if (disguisemethod == null) {
+     disguisereset();
+     }
     
     document.getElementById("target2pic").innerHTML = '<img src=\'https://i.imgur.com/6PQbfMU.png\' width="100%" height="100%">';
      document.getElementById("target2killconditions").innerHTML = "Kill Ljudmila Vetrova " + killmethod + disguisemethod;
@@ -5528,6 +5701,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      
      if (killmethod == null) {
      errorreset();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
      }
      
 document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.com/dZxfXcX.png\' width="100%" height="100%">';
@@ -5807,6 +5984,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      crazywarning();
      }
      
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
         if (document.getElementById("pickups").checked == true){
      document.getElementById("pickupconditions").innerHTML = "";
         } else {
@@ -5894,6 +6075,7 @@ var x = document.getElementById("mission").value;
     } else if (x == "dubai"){
     selectElement('mission', 'rando')
     }
+document.body.scrollTop = document.documentElement.scrollTop = 0;
 roulette();
 }
 </script>
@@ -5902,6 +6084,7 @@ roulette();
 function preroulette() {
 var strikes = 0;
 var x = document.getElementById("mission").value;
+document.body.scrollTop = document.documentElement.scrollTop = 0;
 roulette();
 }
 </script>
@@ -5933,6 +6116,27 @@ function conflictcheck() {
 <script>
 function errorreset() {
 alert("Error: Undefined kill condition. Adjust your options for this mission.");
+document.getElementById("missiontitle").innerHTML = ""; 
+document.getElementById("pickupconditions").innerHTML = "";   
+document.getElementById("startconditions").innerHTML = "";
+document.getElementById("target1pic").innerHTML = '';
+document.getElementById("target1killconditions").innerHTML = "";
+document.getElementById("target2pic").innerHTML = '';
+document.getElementById("target2killconditions").innerHTML = "";
+document.getElementById("target3pic").innerHTML = '';
+document.getElementById("target3killconditions").innerHTML = "";
+document.getElementById("target4pic").innerHTML = '';
+document.getElementById("target4killconditions").innerHTML = "";
+document.getElementById("exitconditions").innerHTML = "";
+selectElement('mission', 'rando');
+document.body.style.backgroundColor = "#ffffff";
+bgchange();
+}
+</script>
+
+<script>
+function disguisereset() {
+alert("Error: Undefined disguise condition. Adjust your options for this mission.");
 document.getElementById("missiontitle").innerHTML = ""; 
 document.getElementById("pickupconditions").innerHTML = "";   
 document.getElementById("startconditions").innerHTML = "";
