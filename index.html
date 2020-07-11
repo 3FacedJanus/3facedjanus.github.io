@@ -95,7 +95,7 @@ body {
 <option style="background-color: #ffffff;" value="rando">Select a Mission</option>
 <option style="background-color: #ead3a3;" value="sydney">Freeform Training (ICA Training Facility 1)</option>
 <option style="background-color: #d9eae3;" value="cuba">The Final Test (ICA Training Facility 2)</option>
-<option style="background-color: #8db3e2;" value="paris">The Showstopper (Paris)</option>
+<option style="background-color: #6e87a0;" value="paris">The Showstopper (Paris)</option>
 <option style="background-color: #f79646;" value="sapienza">World of Tomorrow (Sapienza)</option>
 <option style="background-color: #c4bd97;" value="marrakesh">A Gilded Cage (Marrakesh)</option>
 <option style="background-color: #ffff7f;" value="bangkok">Club 27 (Bangkok)</option>
@@ -123,7 +123,7 @@ function bgChange() {
     } else if (x == "cuba"){
     document.body.style.backgroundColor = "#d9eae3";
     } else if (x == "paris"){
-    document.body.style.backgroundColor = "#8db3e2";
+    document.body.style.backgroundColor = "#6e87a0";
     } else if (x == "sapienza"){
     document.body.style.backgroundColor = "#f79646";
     } else if (x == "marrakesh"){
@@ -327,7 +327,7 @@ function looseDisguises() {
 <span class="scorecardline1" style="background-color:#d9eae3; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 18px; float:left;">ICA Facility - The Final Test</span>
 <input type="number" class="scorecardline2" id="v1" style="background-color:#d9eae3; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 16px;" onkeyup="calculate()">
 <span class="scorecardline2" style="background-color:#d9eae3; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 18px;">Points</span>
-<span class="scorecardline1" style="background-color:#8db3e2; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 18px; float:left;">Paris - The Showstopper</span>
+<span class="scorecardline1" style="background-color:#6e87a0; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 18px; float:left;">Paris - The Showstopper</span>
 <input type="number" class="scorecardline2" id="v2" style="background-color:#8db3e2; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 16px;" onkeyup="calculate()">
 <span class="scorecardline2" style="background-color:#8db3e2; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 18px;">Points</span>
 <span class="scorecardline1" style="background-color:#f79646; font-family:Microsoft JhengHei UI; font-weight: bold; font-size: 18px; float:left;">Sapienza - World of Tomorrow</span>
@@ -3334,7 +3334,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("basicsuit").checked == true){
         
-          possibledisguises.push();
+          possibledisguises.push(" while wearing your starting suit", " while disguised as a Bodyguard.");
         }
         if (document.getElementById("guardsuit").checked == true){
         
@@ -3350,7 +3350,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push();
+          possibledisguises.push(" while wearing your starting suit.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
@@ -4958,7 +4958,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         <!--------------------------------------------- EXITS -->
         if (document.getElementById("basicexits").checked == true){
         
-          possibleexits.push("Exit via the Pier", "Exit via the Castle Wall", "Exit via Warehouse");
+          possibleexits.push("Exit via the Harbor", "Exit via the Castle Wall", "Exit via Warehouse");
         }
         if (document.getElementById("lockedexits").checked == true){
         
@@ -5063,7 +5063,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
      }
      } else if (document.getElementById("constantkos").checked == false) {
-     var possibleobjectives = ["Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Pacify the Constant.", "Escort the Constant to the pier before completing the mission."];
+     var possibleobjectives = ["Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Let Lucas Grey handle the Constant.", "Pacify the Constant.", "Escort the Constant to the harbor before completing the mission."];
      }
      var objectivesmethod = possibleobjectives[Math.floor(Math.random() * possibleobjectives.length)];
      
@@ -5082,8 +5082,11 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (exitmethod == "Exit via Swan Dive"){
         exitdisguisemethod = " while disguised as Blake Nathaniel."
         }
+        if (objectivesmethod == "Escort the Constant to the harbor before completing the mission."){
+        exitmethod == "Exit via the Harbor."
+        }
      document.getElementById("exitconditions").innerHTML = exitmethod + exitdisguisemethod;
-        } else {
+        } else if (document.getElementById("randoexits").checked == false){
      document.getElementById("exitconditions").innerHTML = "";
         }
      }
