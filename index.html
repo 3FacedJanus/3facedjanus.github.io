@@ -175,7 +175,7 @@ function bgChange() {
 <input id="loaccident" name="loaccident" type="checkbox" value="loaccident"/> <label title="Accidents that are possible only with items / poisons in the loadout screen. 
 (May require unlocking weapons via Challenges.)" for="loaccident">Loadout Accidents / Poisons</label><br />
 <input id="adsnipers" name="adsnipers" type="checkbox" value="adsnipers"/> <label title="Adds a chance for 'Sniper Assassination' conditions to appear. These can be any kill you like, as long as the kill in question is triggered by you firing a sniper rifle (i.e., blowing up a propane flask or dropping a chandelier). Functions independently from 'Loadout Ranged Weapons.'" for="adsnipers">Sniper Assassinations</label><br />
-<input id="rareweapons" name="rareweapons" type="checkbox" value="rareweapons"/> <label title="Adds the following items to the roulette for their respective levels: Sacrificial Dagger (Santa Fortuna) and Golden Sawed Off Bartoli 12G (New York)." for="rareweapons">Rare Weapons</label><br />
+<input id="rareweapons" name="rareweapons" type="checkbox" value="rareweapons"/> <label title="Adds the following items one might consider difficult and/or time-consuming to obtain to the roulette: Sacrificial Dagger (Santa Fortuna), Beak Staff (Whittleton Creek), and Golden Sawed Off Bartoli 12G (New York)." for="rareweapons">Rare Weapons</label><br />
 <!--<input id="kokills" name="kokills" type="checkbox" value="kokills"/> <label title="If the roulette creates a kill condition involving a nonlethal weapon, it will additionally generate a specific kill method that must be performed after pacifying with the nonlethal weapon." for="kokills">Post-Pacify Kill Conditions</label>-->
 <br />
 
@@ -3929,7 +3929,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         <!--------------------------------------------- RARE WEAPONS -->
         if (document.getElementById("rareweapons").checked == true){
-        possiblekills.push("with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger");
+        possiblekills.push("with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -4388,7 +4388,7 @@ document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.co
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
-     var possibleobjectives = ["Identify the Maelstrom with the barber's picture.", "Identify the Maelstrom with the Food District NPC's photo.", "Idenitfy the Maelstrom with Rangan's picture."];
+     var possibleobjectives = ["Identify the Maelstrom with the barber's picture.", "Identify the Maelstrom with the Food District NPC's photo.", "Idenitfy the Maelstrom with Rangan's picture.", "Idenitfy the Maelstrom with Shah's picture."];
      var objectivesmethod = possibleobjectives[Math.floor(Math.random() * possibleobjectives.length)];
     
     document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.com/6T3UtSm.png\' width="100%" height="100%">';
@@ -4430,9 +4430,9 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
           if (y == "specificweapons"){
           if (document.getElementById("nocommonmelee").checked == false){
-          possiblekills.push("with a Screwdriver", "with a Battle Axe", "with a Letter Opener", "with a Kitchen Knife", "with Scissors", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Screwdriver", "with a Battle Axe", "with a Letter Opener", "with a Kitchen Knife", "with Scissors", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Screwdriver", "with a Battle Axe", "with a Letter Opener", "with a Kitchen Knife", "with Scissors", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Screwdriver", "with a Battle Axe", "with a Letter Opener", "with Scissors", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Screwdriver", "with a Letter Opener", "with a Kitchen Knife", "with Scissors", "with a Hatchet", "with a Fire Axe");
+          possiblekills.push("with a Screwdriver", "with a Battle Axe", "with a Letter Opener", "with a Kitchen Knife", "with Scissors", "with a Hatchet", "with a Fire Axe", "with a Screwdriver", "with a Battle Axe", "with a Letter Opener", "with a Kitchen Knife", "with Scissors", "with a Hatchet", "with a Fire Axe", "with a Screwdriver", "with a Battle Axe", "with a Letter Opener", "with a Kitchen Knife", "with Scissors", "with a Hatchet", "with a Fire Axe", "with a Screwdriver", "with a Battle Axe", "with a Letter Opener", "with a Kitchen Knife", "with Scissors", "with a Hatchet", "with a Fire Axe", "with a Screwdriver", "with a Battle Axe", "with a Letter Opener", "with a Kitchen Knife", "with Scissors", "with a Hatchet", "with a Fire Axe");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("with a Battle Axe", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Beak Staff", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Beak Staff", "with a Fire Axe");
+          possiblekills.push("with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe", "with a Battle Axe", "with a Hatchet", "with a Fire Axe");
         }
         }
         if (y == "genericweapons"){
@@ -4597,6 +4597,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- RARE WEAPONS -->
+        if (document.getElementById("rareweapons").checked == true){
+        possiblekills.push("with a Beak Staff", "with a Beak Staff", "with a Beak Staff", "with a Beak Staff", "with a Beak Staff", "with a Beak Staff", "with a Beak Staff");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -5283,7 +5287,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         <!--------------------------------------------- RARE WEAPONS -->
         if (document.getElementById("rareweapons").checked == true){
-        possiblekills.push("with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G");
+        possiblekills.push("with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
