@@ -234,13 +234,14 @@ Bust is kept for ICA Facility missions due to lack of weapon variety." for="noco
 <input style="margin-left: 25px" id="doubleaccidents" name="doubleaccidents" type="checkbox" value="doubleaccidents"/> <label title="Doubles the chances that accident / poison kill conditions will be rolled. Intended to compensate for the variety of kill types included under this category. Functions only for in-level conditions for balance purposes." for="doubleaccidents"> Accident Boost</label><br />
 <h2><u>Disguise Conditions</u></h2>
 <input id="nodisguise" name="nodisguise" type="checkbox" value="nodisguise"  onclick="noDisguises()"/> <label title="Removes disguise conditions from results." for="nodisguise">No Designated Disguises</label><br />
-<input id="loosesuit" name="loosesuit" type="checkbox" value="loosesuit" onclick="looseDisguises()"/> <label title="Limits options to disguises that can be found naturally in the chosen mission. Ideal for no pacifications runs." for="loosesuit"> Loose Disguises Only</label><br />
+<input id="loosesuit" name="loosesuit" type="checkbox" value="loosesuit" onclick="looseDisguises()"/> <label title="Limits options to disguises that can be found naturally in the chosen mission. Ideal for no pacifications runs. Includes disguises that also qualify for 'Extreme Disguises.'" for="loosesuit"> Loose Disguises Only</label><br />
 <input id="suit" name="suit" type="checkbox" value="suit" checked/> <label title="Adds 'starting suit' to disguise results, designating the suit or disguise you begin the mission with. Set as the only disguise option and combine with Only Siut Start Locations for suit-only runs." for="suit">Starting Suit</label><br />
 <input id="basicsuit" name="basicsuit" type="checkbox" value="basicsuit" checked/> <label title="Adds standard non-suit, non-unique disguises to possible disguise results." for="basicsuit">Basic Disguises</label><br />
 <input id="guardsuit" name="guardsuit" type="checkbox" value="guardsuit" checked/> <label title="Adds guard uniforms (disguises that can carry weapons without being suspicious) to possible disguise results." for="guardsuit">Guard Disguises</label><br />
 <input id="cooksuit" name="cooksuit" type="checkbox" value="cooksuit" checked/> <label title="Adds cook uniforms (disguises that can poison food / drinks without being suspicious) to possible disguise results." for="cooksuit">Cook Disguises</label><br />
 <input id="techsuit" name="techsuit" type="checkbox" value="techsuit" checked/> <label title="Adds technician uniforms (disguises that can use screwdrivers / wrenches without being suspicious) to possible disguise results." for="techsuit">Technician Disguises</label><br />
-<input id="uniquesuit" name="uniquesuit" type="checkbox" value="uniquesuit" checked/> <label title="Adds disguises that only appear once in the chosen mission to possible disguise results." for="uniquesuit">Unique Disguises</label><br />
+<input id="uniquesuit" name="uniquesuit" type="checkbox" value="uniquesuit" checked/> <label title="Adds disguises that only appear once in the chosen mission (and don't qualify as Extreme Disguises) to possible disguise results." for="uniquesuit">Unique Disguises</label><br />
+<input id="extremesuit" name="extremesuit" type="checkbox" value="extremesuit" checked/> <label title="Adds disguises that may make the mission considerably harder to possible disguise results. Includes: Stalker (Bangkok), Scarecrow (Colorado), Baseball Player (Hokkaido), and Knight's Armor (Isle of Sg&agrave;il)." for="extremesuit">Extreme Disguises</label><br />
 <script>
 function noDisguises() {
     var nodisguise = document.getElementById("nodisguise");
@@ -259,6 +260,8 @@ function noDisguises() {
     document.getElementById("uniquesuit").checked = false;
     document.getElementById("loosesuit").disabled = true;
     document.getElementById("loosesuit").checked = false;
+    document.getElementById("extremesuit").disabled = true;
+    document.getElementById("extremesuit").checked = false;
   } else {
        document.getElementById("suit").disabled = false;
        document.getElementById("basicsuit").disabled = false;
@@ -267,6 +270,7 @@ function noDisguises() {
        document.getElementById("techsuit").disabled = false;
        document.getElementById("uniquesuit").disabled = false;
        document.getElementById("loosesuit").disabled = false;
+       document.getElementById("extremesuit").disabled = false;
   }
 }
 </script>
@@ -286,6 +290,8 @@ function looseDisguises() {
     document.getElementById("techsuit").checked = false;
     document.getElementById("uniquesuit").disabled = true;
     document.getElementById("uniquesuit").checked = false;
+    document.getElementById("extremesuit").disabled = true;
+    document.getElementById("extremesuit").checked = false;
   } else {
        document.getElementById("suit").disabled = false;
        document.getElementById("basicsuit").disabled = false;
@@ -293,6 +299,7 @@ function looseDisguises() {
        document.getElementById("cooksuit").disabled = false;
        document.getElementById("techsuit").disabled = false;
        document.getElementById("uniquesuit").disabled = false;
+       document.getElementById("extremesuit").disabled = false;
   }
 }
 </script>
@@ -2270,11 +2277,15 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push(" while disguised as Abel de Silva.", " while disguised as a Stalker.");
+          possibledisguises.push(" while disguised as Abel de Silva.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
           possibledisguises.push(" while disguised as Kitchen Staff.", " while disguised as a Waiter.", " while disguised as Hotel Security.", " while disguised as Recording Crew.");
+        }
+        if (document.getElementById("extremesuit").checked == true){
+        
+          possibledisguises.push(" while disguised as a Stalker.");
         }
         <!--------------------------------------------- EXITS -->
         if (document.getElementById("basicexits").checked == true){
@@ -2608,11 +2619,15 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push(" while disguised as the Militia Cook.", " while disguised as the Point Man.", " while disguised as a Scarecrow.");
+          possibledisguises.push(" while disguised as the Militia Cook.", " while disguised as the Point Man.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
           possibledisguises.push(" while disguised as a Scarecrow.", " while disguised as a Militia Technician.", " while disguised as a Militia Elite.", " while disguised as Militia Spec Ops.");
+        }
+        if (document.getElementById("extremesuit").checked == true){
+        
+          possibledisguises.push(" while disguised as a Scarecrow.");
         }
         <!--------------------------------------------- EXITS -->
         if (document.getElementById("basicexits").checked == true){
@@ -2978,11 +2993,15 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Baseball Player.", " while disguised as the Chief Surgeon.", " while disguised as a Helicopter Pilot.", " while disguised as the Hospital Director.", " while disguised as a Motorcyclist.", " while disguised as Amos Dexter (VIP Patient).", " while disguised as Jason Portman (VIP Patient).", " while disguised as a Yoga Instructor.", " while disguised as a VIP Patient.");
+          possibledisguises.push(" while disguised as the Chief Surgeon.", " while disguised as a Helicopter Pilot.", " while disguised as the Hospital Director.", " while disguised as a Motorcyclist.", " while disguised as Amos Dexter (VIP Patient).", " while disguised as Jason Portman (VIP Patient).", " while disguised as a Yoga Instructor.", " while disguised as a VIP Patient.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
           possibledisguises.push(" while disguised as Resort Staff.", " while disguised as a VIP Patient.", " while disguised as a Patient.", " while disguised as a Motorcyclist.", " while disguised as a Baseball Player.");
+        }
+        if (document.getElementById("extremesuit").checked == true){
+        
+          possibledisguises.push(" while disguised as a Baseball Player.");
         }
         <!--------------------------------------------- PICKUPS -->
         if (document.getElementById("pickups").checked == true){
@@ -3229,11 +3248,15 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Baseball Player.", " while disguised as the Chief Surgeon.", " while disguised as a Helicopter Pilot.", " while disguised as the Hospital Director.", " while disguised as a Motorcyclist.", " while disguised as Amos Dexter (VIP Patient).", " while disguised as Jason Portman (VIP Patient).", " while disguised as a Yoga Instructor.", " while disguised as a VIP Patient.");
+          possibledisguises.push(" while disguised as the Chief Surgeon.", " while disguised as a Helicopter Pilot.", " while disguised as the Hospital Director.", " while disguised as a Motorcyclist.", " while disguised as Amos Dexter (VIP Patient).", " while disguised as Jason Portman (VIP Patient).", " while disguised as a Yoga Instructor.", " while disguised as a VIP Patient.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
           possibledisguises.push(" while disguised as Resort Staff.", " while disguised as a VIP Patient.", " while disguised as a Patient.", " while disguised as a Motorcyclist.", " while disguised as a Baseball Player.");
+        }
+        if (document.getElementById("extremesuit").checked == true){
+        
+          possibledisguises.push(" while disguised as a Baseball Player.");
         }
         <!--------------------------------------------- EXITS -->
         if (document.getElementById("basicexits").checked == true){
@@ -5258,11 +5281,15 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push(" while disguised as Blake Nathaniel.", " while disguised in Burial Robes.", " while disguised as a Butler.", " while disguised as an Entertainer.", " while disguised as Jebediah Block.", " while disguised in Knight's Armor.", " while disguised as the Master of Ceremonies.");
+          possibledisguises.push(" while disguised as Blake Nathaniel.", " while disguised in Burial Robes.", " while disguised as a Butler.", " while disguised as an Entertainer.", " while disguised as Jebediah Block.", " while disguised as the Master of Ceremonies.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
           possibledisguises.push(" while disguised as an Entertainer.", " while disguised as Event Staff.", " while disguised as an Ark Member.", " while disguised in Burial Robes.", " while disguised in Knight's Armor.");
+        }
+        if (document.getElementById("extremesuit").checked == true){
+        
+          possibledisguises.push(" while disguised in Knight's Armor.");
         }
         <!--------------------------------------------- EXITS -->
         if (document.getElementById("basicexits").checked == true){
