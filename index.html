@@ -59,7 +59,7 @@ body {
 <body style="font-family:calibri; font-size: 16px;">
 <span style="font-family:Microsoft JhengHei UI; font-size: 30px; font-weight: bold;">WORLD OF ASSASSINATION ROULETTE</span>
 <br />
-<span>Version 1.2</span>
+<span>Version 1.3</span>
 <hr>
 <button onclick="preroulette()">Reroll Roulette</button>
 <button onclick="randommission()">Random Mission</button>
@@ -174,8 +174,10 @@ function bgChange() {
 (May require unlocking weapons via Challenges.)" for="loexplosion">Loadout Explosives</label><br />
 <input id="loaccident" name="loaccident" type="checkbox" value="loaccident"/> <label title="Accidents that are possible only with items / poisons in the loadout screen. 
 (May require unlocking weapons via Challenges.)" for="loaccident">Loadout Accidents / Poisons</label><br />
+<input id="necksnaps" name="necksnaps" type="checkbox" value="necksnaps"/> <label title="Adds 'Kill with a Neck Snap' to the possible kill conditions. Slightly less likely to be rolled than other kill conditions." for="necksnaps">Neck Snaps</label><br />
 <input id="adsnipers" name="adsnipers" type="checkbox" value="adsnipers"/> <label title="Adds a chance for 'Sniper Assassination' conditions to appear. These can be any kill you like, as long as the kill in question is triggered by you firing a sniper rifle (i.e., blowing up a propane flask or dropping a chandelier). Functions independently from 'Loadout Ranged Weapons.'" for="adsnipers">Sniper Assassinations</label><br />
 <input id="rareweapons" name="rareweapons" type="checkbox" value="rareweapons"/> <label title="Adds the following items one might consider difficult and/or time-consuming to obtain to the roulette: Sacrificial Dagger (Santa Fortuna), Beak Staff (Whittleton Creek), and Golden Sawed Off Bartoli 12G (New York)." for="rareweapons">Rare Weapons</label><br />
+<input id="anykill" name="anykill" type="checkbox" value="anykill"/> <label title="Adds 'Kill using any method' to the possible kill conditions." for="anykill">Player's Choice Kills</label><br />
 <!--<input id="kokills" name="kokills" type="checkbox" value="kokills"/> <label title="If the roulette creates a kill condition involving a nonlethal weapon, it will additionally generate a specific kill method that must be performed after pacifying with the nonlethal weapon." for="kokills">Post-Pacify Kill Conditions</label>-->
 <br />
 
@@ -190,7 +192,7 @@ function bgChange() {
   <li><i>Specific Melee Weapons</i>:  Designates melee weapons by name (Letter Opener, Wrench, Battle Axe, etc.).</li>
   <li><i>Generic Melee Weapons Only</i>:  Only designates a "Kill with a (lethal / nonlethal) melee weapon" condition.</li>
 </ul>
-<input style="margin-left: 25px" id="nocommonmelee" name="nocommonmelee" type="checkbox" value="nocommonmelee" checked/> <label title="Removes the following items from the possible in-level melee kill conditions: Hammer, Wrench, Crowbar, Propane Flask, Fire Extinguisher, Soda Can, Shovel, Brick, Bust, Leather Briefcase, Spaghetti Can, Car Battery, Coconut, Baseball, Iron, Lead Pipe, Screwdriver, Kitchen Knife, Cleaver, Scissors, and Letter Opener, as well as a few others on a case-by-case basis.
+<input style="margin-left: 25px" id="nocommonmelee" name="nocommonmelee" type="checkbox" value="nocommonmelee"/> <label title="Removes the following items from the possible in-level melee kill conditions: Hammer, Wrench, Crowbar, Propane Flask, Fire Extinguisher, Soda Can, Shovel, Brick, Bust, Leather Briefcase, Spaghetti Can, Car Battery, Coconut, Baseball, Iron, Lead Pipe, Screwdriver, Kitchen Knife, Cleaver, Scissors, and Letter Opener, as well as a few others on a case-by-case basis.
 Bust is kept for ICA Facility missions due to lack of weapon variety." for="nocommonmelee"> Trim Down Melee Weapons</label><br /><br />
 <select id="guns" name="guns">
 <option value="basicguns">Ranged Weapons by Gun Type</option>
@@ -205,8 +207,8 @@ Bust is kept for ICA Facility missions due to lack of weapon variety." for="noco
   <li><i>Generic Ranged Weapons Only</i>:  Only designates a "Kill with a ranged weapon" condition.</li>
 </ul>
 <select id="explosives" name="explosives">
-<option value="specificbombs">Specific Explosives</option>
 <option value="basicbombs">Explosives by Type</option>
+<option value="specificbombs">Specific Explosives</option>
 <!--<option value="sngbombs">Specific and Generic Explosives</option>-->
 <option value="genericbombs">Generic Explosives Only</option>
 </select>
@@ -229,6 +231,7 @@ Bust is kept for ICA Facility missions due to lack of weapon variety." for="noco
   <li><i>Generic Accidents / Poisons Only</i>:  Only designates "Kill in an accident" and "Kill with poison" conditions.</li>
   <li>Note: Lethal poison kills should be included as options for a "Kill in an accident" condition.</li>
 </ul>
+<input style="margin-left: 25px" id="doubleaccidents" name="doubleaccidents" type="checkbox" value="doubleaccidents"/> <label title="Doubles the chances that accident / poison kill conditions will be rolled. Intended to compensate for the variety of kill types included under this category. Functions only for in-level conditions for balance purposes." for="doubleaccidents"> Accident Boost</label><br />
 <h2><u>Disguise Conditions</u></h2>
 <input id="nodisguise" name="nodisguise" type="checkbox" value="nodisguise"  onclick="noDisguises()"/> <label title="Removes disguise conditions from results." for="nodisguise">No Designated Disguises</label><br />
 <input id="loosesuit" name="loosesuit" type="checkbox" value="loosesuit" onclick="looseDisguises()"/> <label title="Limits options to disguises that can be found naturally in the chosen mission. Ideal for no pacifications runs." for="loosesuit"> Loose Disguises Only</label><br />
@@ -544,6 +547,9 @@ function roulette() {
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
+        if (document.getElementById("doubleaccidents").checked == true){
+        
+        }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
         if (document.getElementById("lomelee").checked == true){
@@ -815,6 +821,9 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
+        if (document.getElementById("doubleaccidents").checked == true){
+        
+        }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
         if (document.getElementById("lomelee").checked == true){
@@ -1055,10 +1064,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive");
+          possiblekills.push("with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion");
+          possiblekills.push("with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -1074,16 +1083,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -1176,6 +1199,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -1363,10 +1394,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a shootable explosive", "with a thrown explosive");
+          possiblekills.push("with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Remote Explosive", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with an Explosive Golf Ball");
+          possiblekills.push("with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball", "with a Remote Explosive", "with a Bag of Gunpowder", "with an Explosive Golf Ball");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -1388,10 +1419,24 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -1485,6 +1530,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
         }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
+        }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
         
@@ -1556,8 +1609,6 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      
      if (killmethod == null) {
      errorreset();
-     } else if (killmethod == "by drowning") {
-     crazywarning();
      } else if (killmethod == "by electrocution") {
      crazywarning();
      }
@@ -1687,10 +1738,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive");
+          possiblekills.push("with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion");
+          possiblekills.push("with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -1706,16 +1757,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -1809,6 +1874,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
         }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
+        }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
         
@@ -1880,6 +1953,8 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      if (killmethod == null) {
      errorreset();
      } else if (killmethod == "by electrocution") {
+     crazywarning();
+     } else if (killmethod == "by drowning") {
      crazywarning();
      }
      
@@ -2000,16 +2075,16 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push();
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
+          possiblekills.push();
         }
           if (y == "sngbombs"){
           possiblekills.push();
         }
         if (y == "genericbombs"){
-          possiblekills.push("with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion");
+          possiblekills.push();
         }
         if (document.getElementById("flashbangs").checked == true){
         possiblekills.push();
@@ -2019,16 +2094,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -2121,6 +2210,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -2272,7 +2369,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           if (document.getElementById("nocommonmelee").checked == false){
           possiblekills.push("with a Screwdriver", "with an Old Axe", "with a Kitchen Knife", "with a Cleaver", "with a Screwdriver", "with an Old Axe", "with a Kitchen Knife", "with a Cleaver", "with a Screwdriver", "with an Old Axe", "with a Kitchen Knife", "with a Cleaver", "with a Screwdriver", "with an Old Axe", "with a Kitchen Knife", "with a Cleaver", "with a Screwdriver", "with an Old Axe", "with a Kitchen Knife", "with a Cleaver", "with a Screwdriver", "with an Old Axe", "with a Kitchen Knife", "with a Cleaver", "with a Screwdriver", "with an Old Axe", "with a Kitchen Knife", "with a Cleaver", "with a Screwdriver", "with an Old Axe", "with a Kitchen Knife", "with a Cleaver", "with a Screwdriver", "with an Old Axe", "with a Kitchen Knife", "with a Cleaver");
         } else if (document.getElementById("nocommonmelee").checked == true){
-          possiblekills.push("with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe");
+          possiblekills.push("with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe", "with an Old Axe");
         }
         }
         if (y == "genericweapons"){
@@ -2316,10 +2413,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive");
+          possiblekills.push("with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion", "with a Propane Flask explosion", "with a Nitroglycerin explosion");
+          possiblekills.push("with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion", "with a Nitroglycerin explosion");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -2335,16 +2432,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -2437,6 +2548,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -2664,16 +2783,16 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push();
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
+          possiblekills.push();
         }
           if (y == "sngbombs"){
           possiblekills.push();
         }
         if (y == "genericbombs"){
-          possiblekills.push("with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion");
+          possiblekills.push();
         }
         if (document.getElementById("flashbangs").checked == true){
         possiblekills.push();
@@ -2683,16 +2802,30 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -2785,6 +2918,14 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -2913,16 +3054,16 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push();
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
+          possiblekills.push();
         }
           if (y == "sngbombs"){
           possiblekills.push();
         }
         if (y == "genericbombs"){
-          possiblekills.push("with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion");
+          possiblekills.push();
         }
         }
         <!--------------------------------------------- IN-LEVEL ACCIDENTS -->
@@ -2935,10 +3076,24 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident","in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident","in a surgery-related accident");
+          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "by draining his blood", "by sabotaging KAI", "by electrocution", "by poisoning his stem cells", "by destroying his replacement heart", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident", "in a surgery-related accident");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -3018,6 +3173,10 @@ document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.co
         if (y == "genericaccidents"){
           possiblekills.push("with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison", "with poison");
         }
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -3189,10 +3348,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive", "with a shootable explosive", "with a throwable explosive");
+          possiblekills.push("with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive", "with a throwable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade", "with a Propane Flask explosion", "with a Fragmentation Grenade");
+          possiblekills.push("with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade", "with a Fragmentation Grenade");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -3208,16 +3367,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison");
+          possiblekills.push("by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -3310,6 +3483,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -3481,10 +3662,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive", "with a shootable explosive", "with a remote explosive", "with a thrown explosive");
+          possiblekills.push("with a remote explosive", "with a thrown explosive", "with a remote explosive", "with a thrown explosive", "with a remote explosive", "with a thrown explosive", "with a remote explosive", "with a thrown explosive", "with a remote explosive", "with a thrown explosive", "with a remote explosive", "with a thrown explosive", "with a remote explosive", "with a thrown explosive", "with a remote explosive", "with a thrown explosive", "with a remote explosive", "with a thrown explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Propane Flask explosion", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Car Bomb", "with a Kronstadt Octane Booster");
+          possiblekills.push("with a Car Bomb", "with a Kronstadt Octane Booster", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Car Bomb", "with a Kronstadt Octane Booster", "with a Car Bomb", "with a Kronstadt Octane Booster");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -3500,16 +3681,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -3602,6 +3797,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -3793,10 +3996,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
+          possiblekills.push("with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel");
+          possiblekills.push("with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel", "with a Remote Explosive", "with a Letterbomb Parcel");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -3812,16 +4015,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -3918,6 +4135,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         <!--------------------------------------------- RARE WEAPONS -->
         if (document.getElementById("rareweapons").checked == true){
         possiblekills.push("with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger", "with a Sacrificial Dagger");
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -4035,6 +4260,8 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      errorreset();
      } else if (killmethod == "with a falling object") {
      crazywarning();
+     } else if (killmethod == "by electrocution") {
+     crazywarning();
      }
      
      if (disguisemethod == null) {
@@ -4122,16 +4349,16 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push();
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion", "with a Propane Flask explosion");
+          possiblekills.push();
         }
           if (y == "sngbombs"){
           possiblekills.push();
         }
         if (y == "genericbombs"){
-          possiblekills.push("with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion");
+          possiblekills.push();
         }
         if (document.getElementById("flashbangs").checked == true){
         possiblekills.push();
@@ -4141,16 +4368,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -4243,6 +4484,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -4464,10 +4713,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
+          possiblekills.push("with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Propane Flask explosion", "with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block");
+          possiblekills.push("with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block", "with a Car Bomb", "with a Remote CX Demo Block");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -4483,16 +4732,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -4589,6 +4852,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         <!--------------------------------------------- RARE WEAPONS -->
         if (document.getElementById("rareweapons").checked == true){
         possiblekills.push("with a Beak Staff", "with a Beak Staff", "with a Beak Staff", "with a Beak Staff", "with a Beak Staff", "with a Beak Staff", "with a Beak Staff");
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -4792,10 +5063,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
+          possiblekills.push("with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive", "with a shootable explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder", "with a Propane Flask explosion", "with a Bag of Gunpowder");
+          possiblekills.push("with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder", "with a Bag of Gunpowder");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -4811,16 +5082,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -4913,6 +5198,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -5151,10 +5444,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
+          possiblekills.push("with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Propane Flask explosion", "with a Letterbomb Parcel", "with a Letterbomb Parcel");
+          possiblekills.push("with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel", "with a Letterbomb Parcel");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -5170,16 +5463,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -5276,6 +5583,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         <!--------------------------------------------- RARE WEAPONS -->
         if (document.getElementById("rareweapons").checked == true){
         possiblekills.push("with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G", "with a Golden Sawed Off Bartoli 12G");
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -5464,10 +5779,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilexplosion").checked == true){
           var y = document.getElementById("explosives").value;
           if (y == "basicbombs"){
-          possiblekills.push("with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive", "with a shootable explosive", "with a remote explosive");
+          possiblekills.push("with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive" ,"with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive", "with a remote explosive");
         }
           if (y == "specificbombs"){
-          possiblekills.push("with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Propane Flask explosion", "with a Remote Explosive", "with a Remote Explosive");
+          possiblekills.push("with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive", "with a Remote Explosive");
         }
           if (y == "sngbombs"){
           possiblekills.push();
@@ -5483,16 +5798,30 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (document.getElementById("ilaccident").checked == true){
           var y = document.getElementById("accidents").value;
           if (y == "basicaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
         }
           if (y == "specificaccidents"){
           possiblekills.push();
         }
           if (y == "sngaccidents"){
-          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
         }
         if (y == "genericaccidents"){
           possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        if (document.getElementById("doubleaccidents").checked == true){
+        if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison", "with poison", "with poison", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
         }
         }
         <!--------------------------------------------- LOADOUT LETHAL MELEE -->
@@ -5585,6 +5914,14 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         if (y == "specificguns"){
           possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
         }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
         }
         <!--------------------------------------------- DISGUISES -->
         if (document.getElementById("nodisguise").checked == true){
@@ -6092,7 +6429,7 @@ roulette();
 function crazywarning() {
 if (document.getElementById("crazywarnings").checked == true){
 if (document.getElementById("loaccident").checked == false){
-     alert("Crazy Kill Condition Warning!!! \nOne (or more) of the kill conditions you rolled is an insanely hard accident kill that may involve dragging an unconscious target far away from their normal range. Proceed only if you dare - otherwise, reroll! \n(To disable these warnings, uncheck 'Crazy Condition Warnings' under 'Other Options.'");
+     alert("Crazy Kill Condition Warning!!! \nOne (or more) of the kill conditions you rolled is an insanely hard accident kill that may involve dragging or luring a target far away from their normal range. Proceed only if you dare - otherwise, reroll! \n(To disable these warnings, uncheck 'Crazy Condition Warnings' under 'Other Options.'");
 }
 }
 }
