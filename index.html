@@ -59,7 +59,7 @@ body {
 <body style="font-family:calibri; font-size: 16px;">
 <span style="font-family:Microsoft JhengHei UI; font-size: 30px; font-weight: bold;">WORLD OF ASSASSINATION ROULETTE</span>
 <br />
-<span>Version 1.32</span>
+<span>Version 1.33</span>
 <hr>
 <button onclick="preroulette()">Reroll Roulette</button>
 <button onclick="randommission()">Random Mission</button>
@@ -238,13 +238,16 @@ Bust is kept for ICA Facility missions due to lack of weapon variety." for="noco
 <h2><u>Disguise Conditions</u></h2>
 <input id="nodisguise" name="nodisguise" type="checkbox" value="nodisguise"  onclick="noDisguises()"/> <label title="Removes disguise conditions from results." for="nodisguise">No Designated Disguises</label><br />
 <input id="loosesuit" name="loosesuit" type="checkbox" value="loosesuit" onclick="looseDisguises()"/> <label title="Limits options to disguises that can be found naturally in the chosen mission. Ideal for no pacifications runs. Includes disguises that also qualify for 'Extreme Disguises.'" for="loosesuit"> Loose Disguises Only</label><br />
-<input id="suit" name="suit" type="checkbox" value="suit" checked/> <label title="Adds 'starting suit' to disguise results, designating the suit or disguise you begin the mission with. Set as the only disguise option and combine with Only Siut Start Locations for suit-only runs." for="suit">Starting Suit</label><br />
-<input id="basicsuit" name="basicsuit" type="checkbox" value="basicsuit" checked/> <label title="Adds standard non-suit, non-unique disguises to possible disguise results." for="basicsuit">Basic Disguises</label><br />
+<input id="suit" name="suit" type="checkbox" value="suit" checked/> <label title="Adds 'starting suit' to disguise results, designating the suit or disguise you begin the mission with. Set as the only disguise option and combine with Only Suit Start Locations for suit-only runs." for="suit">Starting Suit</label><br />
+<input id="basicsuit" name="basicsuit" type="checkbox" value="basicsuit" checked/> <label title="Adds standard non-suit, non-unique disguises to possible disguise results.
+The missions Freeform Training and The Final Test do not have basic disguises." for="basicsuit">Basic Disguises</label><br />
 <input id="guardsuit" name="guardsuit" type="checkbox" value="guardsuit" checked/> <label title="Adds guard uniforms (disguises that can carry weapons without being suspicious) to possible disguise results." for="guardsuit">Guard Disguises</label><br />
-<input id="cooksuit" name="cooksuit" type="checkbox" value="cooksuit" checked/> <label title="Adds cook uniforms (disguises that can poison food / drinks without being suspicious) to possible disguise results." for="cooksuit">Cook Disguises</label><br />
-<input id="techsuit" name="techsuit" type="checkbox" value="techsuit" checked/> <label title="Adds technician uniforms (disguises that can use screwdrivers / wrenches without being suspicious) to possible disguise results." for="techsuit">Technician Disguises</label><br />
+<input id="cooksuit" name="cooksuit" type="checkbox" value="cooksuit" checked/> <label title="Adds cook uniforms (disguises that can poison food / drinks without being suspicious) to possible disguise results.
+The missions The Final Test, Nightcall, and Golden Handshake do not have cook disguises." for="cooksuit">Cook Disguises</label><br />
+<input id="techsuit" name="techsuit" type="checkbox" value="techsuit" checked/> <label title="Adds technician uniforms (disguises that can interact with machinery without being suspicious) to possible disguise results.
+The mission Nightcall does not have technician disguises." for="techsuit">Technician Disguises</label><br />
 <input id="uniquesuit" name="uniquesuit" type="checkbox" value="uniquesuit" checked/> <label title="Adds disguises that only appear once in the chosen mission (and don't qualify as Extreme Disguises) to possible disguise results." for="uniquesuit">Unique Disguises</label><br />
-<input id="extremesuit" name="extremesuit" type="checkbox" value="extremesuit" checked/> <label title="Adds disguises that may make the mission considerably harder to possible disguise results. Includes: Stalker (Bangkok), Scarecrow (Colorado), Baseball Player (Hokkaido), and Knight's Armor (Isle of Sg&agrave;il)." for="extremesuit">Extreme Disguises</label><br />
+<input id="extremesuit" name="extremesuit" type="checkbox" value="extremesuit" checked/> <label title="Adds disguises that may make the mission considerably harder to possible disguise results. Includes: Prisoner (Marrakesh), Stalker (Bangkok), Scarecrow (Colorado), Baseball Player (Hokkaido), and Knight's Armor (Isle of Sg&agrave;il)." for="extremesuit">Extreme Disguises</label><br />
 <script>
 function noDisguises() {
     var nodisguise = document.getElementById("nodisguise");
@@ -1032,7 +1035,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         <!--------------------------------------------- STARTS -->
         var y = document.getElementById("starts").value;
           if (y == "basicstarts"){
-          possiblestarts.push("Start Mission on the Red Carpet.", "Start Mission in the Palace Garden.", "Start Mission in the Attic.", "Start Mission on the Piledriver Barge.", "Start Mission undercover as a Stylist in the Dressing Area.", "Start Mission undercover as Palace Staff in the Kitchen.", "Start Mission undercover as Tech Crew in the AV Center.", "Start Mission undercover as Chef in the Locker Room.", "Start Mission undercover in Tuxedo at the IAGO Auction.");
+          possiblestarts.push("Start Mission on the Red Carpet.", "Start Mission in the Palace Garden.", "Start Mission in the Attic.", "Start Mission on the Piledriver Barge.", "Start Mission undercover as a Stylist in the Dressing Area.", "Start Mission undercover as Palace Staff in the Kitchen.", "Start Mission undercover as Tech Crew in the AV Center.", "Start Mission undercover as Chef in the Locker Room.", "Start Mission undercover at the IAGO Auction.");
         }
         if (y == "suitstarts"){
           possiblestarts.push("Start Mission on the Red Carpet.", "Start Mission in Palace Garden.", "Start Mission in Attic.", "Start Mission on the Piledriver Barge.");
@@ -1943,11 +1946,15 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Cameraman.", " while disguised as a Bodyguard.", " while disguised as a Consulate Intern.", " while disguised as a Fortune Teller.", " while disguised as the Headmaster.", " while disguised as a Masseur.", " while disguised as the Prisoner.");
+          possibledisguises.push(" while disguised as a Cameraman.", " while disguised as a Bodyguard.", " while disguised as a Consulate Intern.", " while disguised as a Fortune Teller.", " while disguised as the Headmaster.", " while disguised as a Masseur.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
           possibledisguises.push(" while disguised as Consulate Security.", " while disguised as a Consulate Janitor.", " while disguised as an Elite Soldier.", " while disguised as a Handyman.", " while disguised as a Shopkeeper.");
+        }
+        if (document.getElementById("extremesuit").checked == true){
+        
+          possibledisguises.push(" while disguised as the Prisoner.");
         }
         <!--------------------------------------------- EXITS -->
         if (document.getElementById("basicexits").checked == true){
@@ -2082,7 +2089,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle");
         }
         if (y == "specificguns"){
-          possiblekills.push("with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Baroli 75R", "with a Bartoli 12G", "with a Fusil G2");
+          possiblekills.push("with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2", "with a Bartoli 75R", "with a Bartoli 12G", "with a Fusil G2");
         }
         if (y == "genericguns"){
           possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
@@ -2424,7 +2431,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud assault rifle", "with a loud SMG");
         }
         if (y == "specificguns"){
-          possiblekills.push("with a Baroli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Baroli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Baroli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Baroli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Baroli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Baroli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10");
+          possiblekills.push("with a Bartoli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Bartoli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Bartoli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Bartoli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Bartoli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10", "with a Bartoli 75R", "with a Tactical Bartoli 12G", "with a Bartoli 12G", "with a Fusil G2", "with an HX-7", "with an HX-10");
         }
         if (y == "genericguns"){
           possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
@@ -2606,19 +2613,23 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("basicsuit").checked == true){
         
-          possibledisguises.push();
+          possibledisguises.push(" while disguised as a Hacker.");
         }
         if (document.getElementById("guardsuit").checked == true){
         
           possibledisguises.push(" while disguised as an Explosives Specialist.", " while disguised as a Militia Elite.", " while disguised as a Militia Soldier.", " while disguised as Militia Spec Ops.");
         }
         if (document.getElementById("cooksuit").checked == true){
+          if (document.getElementById("uniquesuit").checked == false){
         
+          possibledisguises.push(" while disguised as the Militia Cook.");
+          } else {
           possibledisguises.push();
+          }
         }
         if (document.getElementById("techsuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Hacker.", " while disguised as a Militia Technician.");
+          possibledisguises.push(" while disguised as a Militia Technician.");
         }
         if (document.getElementById("uniquesuit").checked == true){
         
@@ -3371,7 +3382,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a loud pistol", "with a silenced pistol", "with a loud shotgun", "with a loud SMG", "with a loud pistol", "with a silenced pistol", "with a loud shotgun", "with a loud SMG", "with a loud pistol", "with a silenced pistol", "with a loud shotgun", "with a loud SMG", "with a loud pistol", "with a silenced pistol", "with a loud shotgun", "with a loud SMG", "with a loud pistol", "with a silenced pistol", "with a loud shotgun", "with a loud SMG", "with a loud pistol", "with a silenced pistol", "with a loud shotgun", "with a loud SMG", "with a loud pistol", "with a silenced pistol", "with a loud shotgun", "with a loud SMG", "with a loud pistol", "with a silenced pistol", "with a loud shotgun", "with a loud SMG", "with a loud pistol", "with a silenced pistol", "with a loud shotgun", "with a loud SMG");
         }
         if (y == "specificguns"){
-          possiblekills.push("with a Baroli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert");
+          possiblekills.push("with a Bartoli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with an HX-7", "with a Hackl 9S Covert");
         }
         if (y == "genericguns"){
           possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
@@ -3685,7 +3696,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun", "with a loud pistol", "with a loud shotgun");
         }
         if (y == "specificguns"){
-          possiblekills.push("with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Baroli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G");
+          possiblekills.push("with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G", "with a Bartoli 75R", "with a Bartoli 12G", "with a Tactical Bartoli 12G");
         }
         if (y == "genericguns"){
           possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
@@ -4019,7 +4030,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG");
         }
         if (y == "specificguns"){
-          possiblekills.push("with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador");
+          possiblekills.push("with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a Shashka A33 Gold", "with a Hackl 9S Covert", "with a DAK X2", "with El Matador");
         }
         if (y == "genericguns"){
           possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
@@ -4205,7 +4216,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("basicsuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Band Member.", " while disguised as a Coca Field Worker.", " while disguised as a Construction Worker.", " while disguised as a Gardener.", " while disguised as Mansion Staff.", " while disguised as Submarine Crew.");
+          possibledisguises.push(" while disguised as a Coca Field Worker.", " while disguised as a Construction Worker.", " while disguised as a Gardener.", " while disguised as Mansion Staff.", " while disguised as Submarine Crew.");
         }
         if (document.getElementById("guardsuit").checked == true){
         
@@ -4217,11 +4228,11 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("techsuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Drug Lab Worker.", " while disguised as a Submarine Engineer.");
+          possibledisguises.push(" while disguised as a Drug Lab Worker.");
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push(" while disguised as the Barman.", " while disguised as a Hippie.", " while disguised as a Hippo Whisperer.", " while disguised as a Shaman.", " while disguised as a Tattoo Artist.");
+          possibledisguises.push(" while disguised as the Barman.", " while disguised as a Hippie.", " while disguised as a Hippo Whisperer.", " while disguised as a Shaman.", " while disguised as a Tattoo Artist.", " while disguised as a Band Member.", " while disguised as a Submarine Engineer.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
@@ -4372,7 +4383,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a loud pistol", "with a loud shotgun", "with a loud sniper rifle", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud sniper rifle", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud sniper rifle", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud sniper rifle", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud sniper rifle", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud sniper rifle", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a loud sniper rifle", "with a loud assault rifle", "with a loud SMG");
         }
         if (y == "specificguns"){
-          possiblekills.push("with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Baroli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34");
+          possiblekills.push("with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34", "with a Bartoli 75S", "with a Bartoli 12G", "with a Shashka A33", "with a DAK X2", "with a Druzhina 34");
         }
         if (y == "genericguns"){
           possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
@@ -4736,7 +4747,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a loud pistol", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a silenced SMG", "with a loud pistol", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a silenced SMG", "with a loud pistol", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a silenced SMG", "with a loud pistol", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a silenced SMG", "with a loud pistol", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a silenced SMG", "with a loud pistol", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a silenced SMG", "with a loud pistol", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a silenced SMG");
         }
         if (y == "specificguns"){
-          possiblekills.push("with a Baroli 75R", "with a Hackl 9S Covert", "with a Fusil G2", "with a Fusil G1-4/C", "with a TAC-4 AR Auto", "with an RS-15", "with a DAK X2", "with a DAK X2 Covert", "with Rude Ruby", "with a Baroli 75R", "with a Hackl 9S Covert", "with a Fusil G2", "with a Fusil G1-4/C", "with a TAC-4 AR Auto", "with an RS-15", "with a DAK X2", "with a DAK X2 Covert", "with Rude Ruby", "with a Baroli 75R", "with a Hackl 9S Covert", "with a Fusil G2", "with a Fusil G1-4/C", "with a TAC-4 AR Auto", "with an RS-15", "with a DAK X2", "with a DAK X2 Covert", "with Rude Ruby", "with a Baroli 75R", "with a Hackl 9S Covert", "with a Fusil G2", "with a Fusil G1-4/C", "with a TAC-4 AR Auto", "with an RS-15", "with a DAK X2", "with a DAK X2 Covert", "with Rude Ruby");
+          possiblekills.push("with a Bartoli 75R", "with a Hackl 9S Covert", "with a Fusil G2", "with a Fusil G1-4/C", "with a TAC-4 AR Auto", "with an RS-15", "with a DAK X2", "with a DAK X2 Covert", "with Rude Ruby", "with a Bartoli 75R", "with a Hackl 9S Covert", "with a Fusil G2", "with a Fusil G1-4/C", "with a TAC-4 AR Auto", "with an RS-15", "with a DAK X2", "with a DAK X2 Covert", "with Rude Ruby", "with a Bartoli 75R", "with a Hackl 9S Covert", "with a Fusil G2", "with a Fusil G1-4/C", "with a TAC-4 AR Auto", "with an RS-15", "with a DAK X2", "with a DAK X2 Covert", "with Rude Ruby", "with a Bartoli 75R", "with a Hackl 9S Covert", "with a Fusil G2", "with a Fusil G1-4/C", "with a TAC-4 AR Auto", "with an RS-15", "with a DAK X2", "with a DAK X2 Covert", "with Rude Ruby");
         }
         if (y == "genericguns"){
           possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
@@ -5268,7 +5279,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("basicsuit").checked == true){
         
-          possibledisguises.push(" while disguised as an Architect.", " while disguised as an Ark Member.", " while disguised as Event Staff.", " while disguised as an Initiate.");
+          possibledisguises.push(" while disguised as an Architect.", " while disguised as an Ark Member.", " while disguised as an Initiate.");
         }
         if (document.getElementById("guardsuit").checked == true){
         
@@ -5276,7 +5287,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("cooksuit").checked == true){
         
-          possibledisguises.push(" while disguised as Castle Staff.", " while disguised as a Chef.");
+          possibledisguises.push(" while disguised as Castle Staff.", " while disguised as a Chef.", " while disguised as Event Staff.");
         }
         if (document.getElementById("techsuit").checked == true){
         
@@ -5806,7 +5817,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
           possiblekills.push("with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG", "with a loud pistol", "with a loud shotgun", "with a silenced pistol", "with a loud assault rifle", "with a loud SMG");
         }
         if (y == "specificguns"){
-          possiblekills.push("with a Baroli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Baroli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert");
+          possiblekills.push("with a Bartoli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert", "with a Bartoli 75S", "with a Tactical Bartoli 12G", "with a Fusil G2", "with an HX-10", "with a Hackl 9S Covert");
         }
         if (y == "genericguns"){
           possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
@@ -5988,7 +5999,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("basicsuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Butler.", " while disguised as a Life Guard.", " while disguised as a Masseur.", " while disguised as Villa Staff.", " while disguised as Resort Staff.");
+          possibledisguises.push(" while disguised as a Life Guard.", " while disguised as Villa Staff.", " while disguised as Resort Staff.");
         }
         if (document.getElementById("guardsuit").checked == true){
         
@@ -6004,7 +6015,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("uniquesuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Boat Captain.", " while disguised as a Doctor.", " while disguised in a Gas Suit.", " while disguised as a Personal Trainer.", " while disguised as a Snorkel Instructor.", " while disguised in Swimwear.");
+          possibledisguises.push(" while disguised as a Butler.", " while disguised as a Boat Captain.", " while disguised as a Doctor.", " while disguised in a Gas Suit.", " while disguised as a Personal Trainer.", " while disguised as a Snorkel Instructor.", " while disguised in Swimwear.", " while disguised as a Masseur.");
         }
         if (document.getElementById("loosesuit").checked == true){
         
