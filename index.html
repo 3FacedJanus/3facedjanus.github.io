@@ -59,7 +59,7 @@ body {
 <body style="font-family:calibri; font-size: 16px;">
 <span style="font-family:Microsoft JhengHei UI; font-size: 30px; font-weight: bold;">WORLD OF ASSASSINATION ROULETTE</span>
 <br />
-<span>Version 1.33</span>
+<span>Version 3.00</span>
 <hr>
 <button onclick="preroulette()">Reroll Roulette</button>
 <button onclick="randommission()">Random Mission</button>
@@ -111,6 +111,8 @@ body {
 <option style="background-color: #00d8a3;" value="havenisland">The Last Resort (Haven Island)</option>
 <option style="background-color: #ffe3cf;" value="dubai">????? (Dubai)</option>
 <option style="background-color: #816e5e;" value="dartmoor">????? (Dartmoor)</option>
+<option style="background-color: #605787;" value="berlin">????? (Berlin)</option>
+<option style="background-color: #c14dd1;" value="chongqing">????? (Chongqing)</option>
 </select>
 <br />
 <button onclick="advance()">Advance to Next Mission</button>
@@ -155,6 +157,10 @@ function bgChange() {
     document.body.style.backgroundColor = "#ffe3cf";
     } else if (x == "dartmoor"){
     document.body.style.backgroundColor = "#816e5e";
+    } else if (x == "berlin"){
+    document.body.style.backgroundColor = "#605787";
+    } else if (x == "chongqing"){
+    document.body.style.backgroundColor = "#c14dd1";
   } else {
     document.body.style.backgroundColor = "#ffffff";
   }
@@ -182,9 +188,8 @@ function bgChange() {
 <input id="rareweapons" name="rareweapons" type="checkbox" value="rareweapons"/> <label title="Adds the following items one might consider difficult and/or time-consuming to obtain to the roulette: Sacrificial Dagger (Santa Fortuna), Beak Staff (Whittleton Creek), and Golden Sawed Off Bartoli 12G (New York)." for="rareweapons">Rare Weapons</label><br />
 <input id="anykill" name="anykill" type="checkbox" value="anykill"/> <label title="Adds 'Kill using any method' to the possible kill conditions." for="anykill">Player's Choice Kills</label><br />
 <!--<input id="kokills" name="kokills" type="checkbox" value="kokills"/> <label title="If the roulette creates a kill condition involving a nonlethal weapon, it will additionally generate a specific kill method that must be performed after pacifying with the nonlethal weapon." for="kokills">Post-Pacify Kill Conditions</label>-->
-<br />
 
-<br />
+<h2><u>Condition Specifications</u></h2>
 <select id="weapons" name="weapons">
 <option value="specificweapons">Specific Melee Weapons</option>
 <option value="basicweapons">Melee Weapons by Type</option>
@@ -333,7 +338,7 @@ function looseDisguises() {
 <input id="pickups" name="pickups" type="checkbox" value="pickups" checked/> <label title="Randomize the mission's Agency Pickup location." for="pickups"> Agency Pickup Roulette</label><br />
 <input id="crazywarnings" name="crazywarnings" type="checkbox" value="crazywarnings" checked/> <label title="With this checked, you will receive a popup alerting you of insanely difficult accident kill conditions. Ignore them at your own peril." for="crazywarnings"> Crazy Condition Warnings</label><br />
 <input id="safesoders" name="safesoders" type="checkbox" value="safesoders" checked/> <label title="Check this box to make Soders' kill conditions a bit more score-friendly by limiting them to his surgery-related kills." for="safesoders"> Surgical Assassin Mode for Erich Soders</label><br />
-<input id="wkale" name="wkale" type="checkbox" value="wkale"/> <label for="wkale"> Display Maelstrom as Wazir Kale</label><br />
+<input id="wkale" name="wkale" type="checkbox" value="wkale"/> <label title="Changes Wazir Kale's name in the kill conditions to 'The Maelstrom.'" for="wkale"> Display Wazir Kale as The Maelstrom</label><br />
 <input id="constantkos" name="constantkos" type="checkbox" value="constantkos"/> <label title="While checked along with Objective Roulette, this will make the Constant always have a pacify condition and with a specified nonlethal method, as determined by your Kill Conditions settings." for="constantkos"> Constant KO Conditions</label><br />
 <h2><u>Scorecard</u></h2>
 <div class="row solid">
@@ -4236,7 +4241,7 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         }
         if (document.getElementById("loosesuit").checked == true){
         
-          possibledisguises.push(" while disguised as a Chef.", " while disguised as a Mansion Guard.", " while disguised as a Band Member.", " while disguised as a Gardener", " while disguised as a Submarine Engineer.");
+          possibledisguises.push(" while disguised as a Chef.", " while disguised as a Mansion Guard.", " while disguised as a Band Member.", " while disguised as a Gardener.", " while disguised as a Submarine Engineer.");
         }
         <!--------------------------------------------- EXITS -->
         if (document.getElementById("basicexits").checked == true){
@@ -4644,10 +4649,10 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
      
      if (document.getElementById("wkale").checked == false){
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/RwmnB1L.png\' width="100%" height="100%">';
-     document.getElementById("target1killconditions").innerHTML = "Kill the Maelstrom " + killmethod + disguisemethod;
+     document.getElementById("target1killconditions").innerHTML = "Kill Wazir Kale " + killmethod + disguisemethod;
      } else if (document.getElementById("wkale").checked == true){
      document.getElementById("target1pic").innerHTML = '<img src=\'https://i.imgur.com/RwmnB1L.png\' width="100%" height="100%">';
-     document.getElementById("target1killconditions").innerHTML = "Kill Wazir Kale " + killmethod + disguisemethod;
+     document.getElementById("target1killconditions").innerHTML = "Kill the Maelstrom " + killmethod + disguisemethod;
      }
      
      var startmethod = possiblestarts[Math.floor(Math.random() * possiblestarts.length)];
@@ -4686,7 +4691,7 @@ document.getElementById("target3pic").innerHTML = '<img src=\'https://i.imgur.co
      var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
      var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
      var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
-     var possibleobjectives = ["Identify the Maelstrom with the barber's picture.", "Identify the Maelstrom with the Food District NPC's photo.", "Idenitfy the Maelstrom with Rangan's picture.", "Idenitfy the Maelstrom with Shah's picture."];
+     var possibleobjectives = ["Identify the Maelstrom with the barber's picture.", "Identify the Maelstrom with the Food District NPC's photo.", "Identify the Maelstrom with Rangan's picture.", "Identify the Maelstrom with Shah's picture."];
      var objectivesmethod = possibleobjectives[Math.floor(Math.random() * possibleobjectives.length)];
     
     document.getElementById("target4pic").innerHTML = '<img src=\'https://i.imgur.com/6T3UtSm.png\' width="100%" height="100%">';
@@ -6408,10 +6413,32 @@ document.getElementById("target4pic").innerHTML = ''; document.getElementById("t
         } else {
      document.getElementById("startconditions").innerHTML = "";
         }
+        
+     var startmethod = possiblestarts[Math.floor(Math.random() * possiblestarts.length)];
+     var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
+     var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
+     var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "") {
+     crazywarning();
+     }
      
 document.getElementById("target1pic").innerHTML = '';
      
 document.getElementById("target1killconditions").innerHTML = "";
+        
+     var startmethod = possiblestarts[Math.floor(Math.random() * possiblestarts.length)];
+     var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
+     var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
+     var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "") {
+     crazywarning();
+     }
     
 document.getElementById("target2pic").innerHTML = '';
     
@@ -6435,6 +6462,633 @@ document.getElementById("target4killconditions").innerHTML = "";
     if (x == "dartmoor"){
     bgChange();
     document.getElementById("missiontitle").innerHTML = "Dartmoor - Coming January 20th, 2021"
+        <!--------------------------------------------- STARTS -->
+        var y = document.getElementById("starts").value;
+          if (y == "basicstarts"){
+          possiblestarts.push();
+        }
+        if (y == "suitstarts"){
+          possiblestarts.push();
+        }
+        if (y == "undercoverstarts"){
+          possiblestarts.push();
+        }
+        <!--------------------------------------------- IN-LEVEL LETHAL MELEE -->
+        if (document.getElementById("ilmelee").checked == true){
+          var y = document.getElementById("weapons").value;
+          if (y == "basicweapons"){
+          possiblekills.push("with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon");
+        }
+          if (y == "specificweapons"){
+          if (document.getElementById("nocommonmelee").checked == false){
+          possiblekills.push();
+        } else if (document.getElementById("nocommonmelee").checked == true){
+          possiblekills.push();
+        }
+        }
+        if (y == "genericweapons"){
+          possiblekills.push("with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon");
+        }
+        }
+        <!--------------------------------------------- IN-LEVEL RANGED -->
+        if (document.getElementById("ilranged").checked == true){
+          var y = document.getElementById("guns").value;
+          if (y == "basicguns"){
+          possiblekills.push();
+        }
+          if (y == "loudguns"){
+          possiblekills.push();
+        }
+        if (y == "specificguns"){
+          possiblekills.push();
+        }
+        if (y == "genericguns"){
+          possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
+        }
+        }
+        <!--------------------------------------------- IN-LEVEL NONLETHAL MELEE -->
+        if (document.getElementById("ilblunt").checked == true){
+          var y = document.getElementById("weapons").value;
+          if (y == "basicweapons"){
+          possiblekills.push("after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon");
+        }
+          if (y == "specificweapons"){
+          if (document.getElementById("nocommonmelee").checked == false){
+          possiblekills.push();
+        } else if (document.getElementById("nocommonmelee").checked == true){
+          possiblekills.push();
+        }
+        }
+        if (y == "genericweapons"){
+          possiblekills.push("after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon");
+        }
+        }
+        <!--------------------------------------------- IN-LEVEL EXPLOSIVES -->
+        if (document.getElementById("ilexplosion").checked == true){
+          var y = document.getElementById("explosives").value;
+          if (y == "basicbombs"){
+          possiblekills.push();
+        }
+          if (y == "specificbombs"){
+          possiblekills.push();
+        }
+          if (y == "sngbombs"){
+          possiblekills.push();
+        }
+        if (y == "genericbombs"){
+          possiblekills.push("with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion");
+        }
+        }
+        <!--------------------------------------------- IN-LEVEL ACCIDENTS -->
+        if (document.getElementById("ilaccident").checked == true){
+          var y = document.getElementById("accidents").value;
+          if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push();
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        }
+        <!--------------------------------------------- LOADOUT LETHAL MELEE -->
+        if (document.getElementById("lomelee").checked == true){
+          var y = document.getElementById("weapons").value;
+          if (y == "basicweapons"){
+          possiblekills.push("with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon");
+        }
+          if (y == "specificweapons"){
+          possiblekills.push("with a Fiber Wire", "with a Broadsword", "with a Combat Knife", "with a Concealable Knife", "with a Fishing Line", "with IO Elite S2VP Earphones", "with an Ice Pick", "with a Janbiya", "with Jarl's Pirate Saber", "with Measuring Tape", "with Nne Obara's Machete", "with a Piton", "with a Quickdraw", "with the Masamune", "with a Sacrificial Knife", "with a Shuriken", "with a Tanto", "with the Black Almond's Dagger", "with a Bat Shuriken", "with an Antique Curved Knife", "with an Explosive Pen", "with a Fiber Wire", "with a Broadsword", "with a Concealable Knife", "with a Fishing Line", "with IO Elite S2VP Earphones", "with a Janbiya", "with Jarl's Pirate Saber", "with Nne Obara's Machete", "with a Quickdraw", "with the Masamune", "with a Sacrificial Knife", "with a Shuriken", "with a Tanto", "with the Black Almond's Dagger", "with an Antique Curved Knife", "with an Explosive Pen");
+        }
+        if (y == "genericweapons"){
+          possiblekills.push("with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon");
+        }
+        }
+        <!--------------------------------------------- LOADOUT RANGED -->
+        if (document.getElementById("loranged").checked == true){
+          var y = document.getElementById("guns").value;
+          if (y == "basicguns"){
+          possiblekills.push("with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle");
+        }
+          if (y == "loudguns"){
+          possiblekills.push("with a silenced pistol", "with a loud pistol", "with a loud SMG", "with a silenced SMG", "with a loud shotgun", "with a silenced shotgun", "with a loud assault rifle", "with a silenced assault rifle", "with a loud sniper rifle", "with a silenced sniper rifle", "with a silenced pistol", "with a loud pistol", "with a loud SMG", "with a silenced SMG", "with a loud shotgun", "with a silenced shotgun", "with a loud assault rifle", "with a silenced assault rifle", "with a loud sniper rifle", "with a silenced sniper rifle", "with a silenced pistol", "with a loud pistol", "with a loud SMG", "with a silenced SMG", "with a loud shotgun", "with a silenced shotgun", "with a loud assault rifle", "with a silenced assault rifle", "with a loud sniper rifle", "with a silenced sniper rifle", "with a silenced pistol", "with a loud pistol");
+        }
+        if (y == "specificguns"){
+          possiblekills.push("with an ICA19", "with El Matador", "with Red Ruby", "with the Concept 5", "with a Custom 5mm", "with an HWK 21 Covert", "with an HWK21", "with an ICA19 F/A", "with an ICA19 F/A Stealth", "with an ICA19 Silverballer", "with a Krugermeier 2-2", "with the Striker", "with a Dak X2 Covert", "with a TAC-SMG", "with a TAC-SMG Covert", "with a TAC-SMG S", "with a Bartoli 12G Short H", "with an Enram HV", "with an Enram HV Covert", "with a Sawed Off Bartoli 12G", "with an RS-15", "with a Shashka A33 H", "with a TAC-4 AR Auto", "with a TAC-4 AR Stealth", "with a TAC-4 S/A", "with a Druzhina 34", "with a Druzhina 34 ICA Arctic", "with a Jaeger 7", "with a Jaeger 7 Tiger", "with a Jaeger 7 Lancer", "with a Jaeger 7 Covert", "with a Jaeger 7 Tuatara", "with a Sieger 300", "with a Sieger 300 Ghost", "with a Sieger 300 Advanced", "with a Sieger 300 Tactical");
+        }
+        if (y == "genericguns"){
+          possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
+        }
+        }
+        <!--------------------------------------------- LOADOUT NONLETHAL MELEE -->
+        if (document.getElementById("loblunt").checked == true){
+          var y = document.getElementById("weapons").value;
+          if (y == "basicweapons"){
+          possiblekills.push("after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon");
+        }
+          if (y == "specificweapons"){
+          possiblekills.push("after pacifying with A New Bat", "after pacifying with a Concealable Baton", "after pacifying with a Crystal Ball", "after pacifying with a Feather Duster", "after pacifying with a Fish", "after pacifying with an HF Championship Bat", "after pacifying with a Mace", "after pacifying with a Meaty Bone", "after pacifying with an Okinawan Tonfa", "after pacifying with a Small Goldbar", "after pacifying with a Snowball", "after pacifying with a Violin", "after pacifying with a Claw Hammer", "after pacifying with a Black Leather Briefcase", "after pacifying with an ICA Titanium Crowbar", "after pacifying with the ICA Executive Briefcase Mk II", "after pacifying with an ICA Executive Briefcase", "after pacifying with an Aluminum Travel Briefcase", "after pacifying with an Arctic Toolbox", "after pacifying with an ICA Briefcase", "after pacifying with A New Bat", "after pacifying with a Concealable Baton", "after pacifying with a Crystal Ball", "after pacifying with a Feather Duster", "after pacifying with a Fish", "after pacifying with an HF Championship Bat", "after pacifying with a Mace", "after pacifying with a Meaty Bone", "after pacifying with an Okinawan Tonfa", "after pacifying with a Small Goldbar", "after pacifying with a Snowball", "after pacifying with a Violin", "after pacifying with a Claw Hammer", "after pacifying with the ICA Executive Briefcase Mk II", "after pacifying with an ICA Executive Briefcase", "after pacifying with an ICA Briefcase");
+        }
+        if (y == "genericweapons"){
+          possiblekills.push("after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon");
+        }
+        }
+        <!--------------------------------------------- LOADOUT EXPLOSIVES -->
+        if (document.getElementById("loexplosion").checked == true){
+          var y = document.getElementById("explosives").value;
+          if (y == "basicbombs"){
+          possiblekills.push("with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive");
+        }
+          if (y == "specificbombs"){
+          if (document.getElementById("flashbangs").checked == true){
+          possiblekills.push("with an Explosive Compound", "with an Explosive Baseball", "with a Fragmentation Grenade", "with an ICA Explosive Phone", "with an ICA Micro Remote Explosive", "with an ICA Proximity Explosive", "with an ICA Proximity Micro Explosive", "with an ICA Remote Explosive", "with an ICA Tripwire Mine", "with Napoleon Blownaparte", "with a Proximity CX Demo Block", "with a Proximity Explosive Duck", "with an RFID Triggered Explosive", "with a Remote Breaching Charge", "with a Remote CX Demo Block", "with a Remote Explosive Duck", "with the Iconator", "with the Pale Duck", "after blinding with an ICA Flash Phone", "after pacifying with a Concussion Grenade", "after blinding with a Flash Grenade", "after pacifying with an ICA Proximity Concussion Device", "after pacifying with an ICA Remote Concussion Device", "after blinding with an ICA Remote Flash Device", "after blinding with a Magnesium Pouch", "after pacifying with a Remote Concussion Rubber Duck", "after pacifying with Shaman Powder", "with an ICA Explosive Phone", "with an ICA Tripwire Mine", "with an RFID Triggered Explosive", "after blinding with an ICA Flash Phone", "after pacifying with an ICA Remote Concussion Device", "after blinding with an ICA Remote Flash Device", "after pacifying with an ICA Proximity Concussion Device", "after blinding with a Flash Grenade");
+        } else if (document.getElementById("flashbangs").checked == false){
+          possiblekills.push("with an Explosive Compound", "with an Explosive Baseball", "with a Fragmentation Grenade", "with an ICA Explosive Phone", "with an ICA Micro Remote Explosive", "with an ICA Proximity Explosive", "with an ICA Proximity Micro Explosive", "with an ICA Remote Explosive", "with an ICA Tripwire Mine", "with Napoleon Blownaparte", "with a Proximity CX Demo Block", "with a Proximity Explosive Duck", "with an RFID Triggered Explosive", "with a Remote Breaching Charge", "with a Remote CX Demo Block", "with a Remote Explosive Duck", "with the Iconator", "with the Pale Duck", "with an Explosive Compound", "with an Explosive Baseball", "with a Fragmentation Grenade", "with an ICA Explosive Phone", "with an ICA Micro Remote Explosive", "with an ICA Proximity Explosive", "with an ICA Proximity Micro Explosive", "with an ICA Remote Explosive", "with an ICA Tripwire Mine", "with Napoleon Blownaparte", "with a Proximity CX Demo Block", "with a Proximity Explosive Duck", "with an RFID Triggered Explosive", "with a Remote Breaching Charge", "with a Remote CX Demo Block", "with a Remote Explosive Duck", "with the Iconator", "with the Pale Duck");
+        }
+        }
+          if (y == "sngbombs"){
+          possiblekills.push();
+        }
+        if (y == "genericbombs"){
+          possiblekills.push("with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion");
+        }
+        }
+        <!--------------------------------------------- LOADOUT ACCIDENTS -->
+        if (document.getElementById("loaccident").checked == true){
+          var y = document.getElementById("accidents").value;
+          if (y == "basicaccidents"){
+          possiblekills.push("by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push("with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe");
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with a Modern Lethal Syringe", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        }
+        <!--------------------------------------------- SNIPER ASSASSINATIONS -->
+        if (document.getElementById("adsnipers").checked == true){
+        var y = document.getElementById("guns").value;
+          if (y == "basicguns"){
+          possiblekills.push("with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination");
+        }
+          if (y == "loudguns"){
+          possiblekills.push("with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination");
+        }
+        if (y == "specificguns"){
+          possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
+        }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
+        }
+        <!--------------------------------------------- DISGUISES -->
+        if (document.getElementById("nodisguise").checked == true){
+        
+          possibledisguises.push(".");
+        }
+        if (document.getElementById("suit").checked == true){
+        
+          possibledisguises.push(" while wearing your starting suit.");
+        }
+        if (document.getElementById("basicsuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("guardsuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("cooksuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("techsuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("uniquesuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("loosesuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        <!--------------------------------------------- EXITS -->
+        if (document.getElementById("basicexits").checked == true){
+        
+          possibleexits.push();
+        }
+        if (document.getElementById("lockedexits").checked == true){
+        
+          possibleexits.push();
+        }
+        if (document.getElementById("hardexits").checked == true){
+        
+          possibleexits.push();
+        }
+        if (document.getElementById("exitdisguise").checked == true){
+        
+          var exitdisguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
+        }
+        if (document.getElementById("exitdisguise").checked == false){
+        
+          var exitdisguisemethod = ".";
+        }
+        <!--------------------------------------------- PICKUPS -->
+        if (document.getElementById("pickups").checked == true){
+        
+          possiblepickups.push();
+          
+        }
+        
+     var startmethod = possiblestarts[Math.floor(Math.random() * possiblestarts.length)];
+     var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
+     var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
+     var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
+     var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "") {
+     crazywarning();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
+        if (document.getElementById("pickups").checked == true){
+     document.getElementById("pickupconditions").innerHTML = "";
+        } else {
+     document.getElementById("pickupconditions").innerHTML = "";
+        }     
+     
+        if (document.getElementById("randostarts").checked == true){
+     document.getElementById("startconditions").innerHTML = "";
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
+        
+     var startmethod = possiblestarts[Math.floor(Math.random() * possiblestarts.length)];
+     var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
+     var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
+     var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "") {
+     crazywarning();
+     }
+     
+document.getElementById("target1pic").innerHTML = '';
+     
+document.getElementById("target1killconditions").innerHTML = "";
+    
+document.getElementById("target2pic").innerHTML = '';
+    
+document.getElementById("target2killconditions").innerHTML = "";
+
+document.getElementById("target3pic").innerHTML = '';
+
+document.getElementById("target3killconditions").innerHTML = "";
+
+document.getElementById("target4pic").innerHTML = '';
+
+document.getElementById("target4killconditions").innerHTML = "";
+
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = "";
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
+     }
+<!-------------------------------------------------------------------------------- BERLIN -->
+    if (x == "berlin"){
+    bgChange();
+    document.getElementById("missiontitle").innerHTML = "Berlin - Coming January 20th, 2021"
+        <!--------------------------------------------- STARTS -->
+        var y = document.getElementById("starts").value;
+          if (y == "basicstarts"){
+          possiblestarts.push();
+        }
+        if (y == "suitstarts"){
+          possiblestarts.push();
+        }
+        if (y == "undercoverstarts"){
+          possiblestarts.push();
+        }
+        <!--------------------------------------------- IN-LEVEL LETHAL MELEE -->
+        if (document.getElementById("ilmelee").checked == true){
+          var y = document.getElementById("weapons").value;
+          if (y == "basicweapons"){
+          possiblekills.push("with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon");
+        }
+          if (y == "specificweapons"){
+          if (document.getElementById("nocommonmelee").checked == false){
+          possiblekills.push();
+        } else if (document.getElementById("nocommonmelee").checked == true){
+          possiblekills.push();
+        }
+        }
+        if (y == "genericweapons"){
+          possiblekills.push("with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon");
+        }
+        }
+        <!--------------------------------------------- IN-LEVEL RANGED -->
+        if (document.getElementById("ilranged").checked == true){
+          var y = document.getElementById("guns").value;
+          if (y == "basicguns"){
+          possiblekills.push();
+        }
+          if (y == "loudguns"){
+          possiblekills.push();
+        }
+        if (y == "specificguns"){
+          possiblekills.push();
+        }
+        if (y == "genericguns"){
+          possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
+        }
+        }
+        <!--------------------------------------------- IN-LEVEL NONLETHAL MELEE -->
+        if (document.getElementById("ilblunt").checked == true){
+          var y = document.getElementById("weapons").value;
+          if (y == "basicweapons"){
+          possiblekills.push("after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon");
+        }
+          if (y == "specificweapons"){
+          if (document.getElementById("nocommonmelee").checked == false){
+          possiblekills.push();
+        } else if (document.getElementById("nocommonmelee").checked == true){
+          possiblekills.push();
+        }
+        }
+        if (y == "genericweapons"){
+          possiblekills.push("after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon");
+        }
+        }
+        <!--------------------------------------------- IN-LEVEL EXPLOSIVES -->
+        if (document.getElementById("ilexplosion").checked == true){
+          var y = document.getElementById("explosives").value;
+          if (y == "basicbombs"){
+          possiblekills.push();
+        }
+          if (y == "specificbombs"){
+          possiblekills.push();
+        }
+          if (y == "sngbombs"){
+          possiblekills.push();
+        }
+        if (y == "genericbombs"){
+          possiblekills.push("with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion");
+        }
+        }
+        <!--------------------------------------------- IN-LEVEL ACCIDENTS -->
+        if (document.getElementById("ilaccident").checked == true){
+          var y = document.getElementById("accidents").value;
+          if (y == "basicaccidents"){
+          possiblekills.push("by drowning", "with a falling object", "with a fatal fall", "by electrocution", "with an accidental explosion", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push();
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push();
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        }
+        <!--------------------------------------------- LOADOUT LETHAL MELEE -->
+        if (document.getElementById("lomelee").checked == true){
+          var y = document.getElementById("weapons").value;
+          if (y == "basicweapons"){
+          possiblekills.push("with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon", "with a small lethal melee weapon", "with a large lethal melee weapon");
+        }
+          if (y == "specificweapons"){
+          possiblekills.push("with a Fiber Wire", "with a Broadsword", "with a Combat Knife", "with a Concealable Knife", "with a Fishing Line", "with IO Elite S2VP Earphones", "with an Ice Pick", "with a Janbiya", "with Jarl's Pirate Saber", "with Measuring Tape", "with Nne Obara's Machete", "with a Piton", "with a Quickdraw", "with the Masamune", "with a Sacrificial Knife", "with a Shuriken", "with a Tanto", "with the Black Almond's Dagger", "with a Bat Shuriken", "with an Antique Curved Knife", "with an Explosive Pen", "with a Fiber Wire", "with a Broadsword", "with a Concealable Knife", "with a Fishing Line", "with IO Elite S2VP Earphones", "with a Janbiya", "with Jarl's Pirate Saber", "with Nne Obara's Machete", "with a Quickdraw", "with the Masamune", "with a Sacrificial Knife", "with a Shuriken", "with a Tanto", "with the Black Almond's Dagger", "with an Antique Curved Knife", "with an Explosive Pen");
+        }
+        if (y == "genericweapons"){
+          possiblekills.push("with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon", "with a lethal melee weapon");
+        }
+        }
+        <!--------------------------------------------- LOADOUT RANGED -->
+        if (document.getElementById("loranged").checked == true){
+          var y = document.getElementById("guns").value;
+          if (y == "basicguns"){
+          possiblekills.push("with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle", "with a pistol", "with an SMG", "with a shotgun", "with an assault rifle", "with a sniper rifle");
+        }
+          if (y == "loudguns"){
+          possiblekills.push("with a silenced pistol", "with a loud pistol", "with a loud SMG", "with a silenced SMG", "with a loud shotgun", "with a silenced shotgun", "with a loud assault rifle", "with a silenced assault rifle", "with a loud sniper rifle", "with a silenced sniper rifle", "with a silenced pistol", "with a loud pistol", "with a loud SMG", "with a silenced SMG", "with a loud shotgun", "with a silenced shotgun", "with a loud assault rifle", "with a silenced assault rifle", "with a loud sniper rifle", "with a silenced sniper rifle", "with a silenced pistol", "with a loud pistol", "with a loud SMG", "with a silenced SMG", "with a loud shotgun", "with a silenced shotgun", "with a loud assault rifle", "with a silenced assault rifle", "with a loud sniper rifle", "with a silenced sniper rifle", "with a silenced pistol", "with a loud pistol");
+        }
+        if (y == "specificguns"){
+          possiblekills.push("with an ICA19", "with El Matador", "with Red Ruby", "with the Concept 5", "with a Custom 5mm", "with an HWK 21 Covert", "with an HWK21", "with an ICA19 F/A", "with an ICA19 F/A Stealth", "with an ICA19 Silverballer", "with a Krugermeier 2-2", "with the Striker", "with a Dak X2 Covert", "with a TAC-SMG", "with a TAC-SMG Covert", "with a TAC-SMG S", "with a Bartoli 12G Short H", "with an Enram HV", "with an Enram HV Covert", "with a Sawed Off Bartoli 12G", "with an RS-15", "with a Shashka A33 H", "with a TAC-4 AR Auto", "with a TAC-4 AR Stealth", "with a TAC-4 S/A", "with a Druzhina 34", "with a Druzhina 34 ICA Arctic", "with a Jaeger 7", "with a Jaeger 7 Tiger", "with a Jaeger 7 Lancer", "with a Jaeger 7 Covert", "with a Jaeger 7 Tuatara", "with a Sieger 300", "with a Sieger 300 Ghost", "with a Sieger 300 Advanced", "with a Sieger 300 Tactical");
+        }
+        if (y == "genericguns"){
+          possiblekills.push("with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon", "with a ranged weapon");
+        }
+        }
+        <!--------------------------------------------- LOADOUT NONLETHAL MELEE -->
+        if (document.getElementById("loblunt").checked == true){
+          var y = document.getElementById("weapons").value;
+          if (y == "basicweapons"){
+          possiblekills.push("after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon", "after pacifying with a small nonlethal melee weapon", "after pacifying with a large nonlethal melee weapon");
+        }
+          if (y == "specificweapons"){
+          possiblekills.push("after pacifying with A New Bat", "after pacifying with a Concealable Baton", "after pacifying with a Crystal Ball", "after pacifying with a Feather Duster", "after pacifying with a Fish", "after pacifying with an HF Championship Bat", "after pacifying with a Mace", "after pacifying with a Meaty Bone", "after pacifying with an Okinawan Tonfa", "after pacifying with a Small Goldbar", "after pacifying with a Snowball", "after pacifying with a Violin", "after pacifying with a Claw Hammer", "after pacifying with a Black Leather Briefcase", "after pacifying with an ICA Titanium Crowbar", "after pacifying with the ICA Executive Briefcase Mk II", "after pacifying with an ICA Executive Briefcase", "after pacifying with an Aluminum Travel Briefcase", "after pacifying with an Arctic Toolbox", "after pacifying with an ICA Briefcase", "after pacifying with A New Bat", "after pacifying with a Concealable Baton", "after pacifying with a Crystal Ball", "after pacifying with a Feather Duster", "after pacifying with a Fish", "after pacifying with an HF Championship Bat", "after pacifying with a Mace", "after pacifying with a Meaty Bone", "after pacifying with an Okinawan Tonfa", "after pacifying with a Small Goldbar", "after pacifying with a Snowball", "after pacifying with a Violin", "after pacifying with a Claw Hammer", "after pacifying with the ICA Executive Briefcase Mk II", "after pacifying with an ICA Executive Briefcase", "after pacifying with an ICA Briefcase");
+        }
+        if (y == "genericweapons"){
+          possiblekills.push("after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon", "after pacifying with a nonlethal melee weapon");
+        }
+        }
+        <!--------------------------------------------- LOADOUT EXPLOSIVES -->
+        if (document.getElementById("loexplosion").checked == true){
+          var y = document.getElementById("explosives").value;
+          if (y == "basicbombs"){
+          possiblekills.push("with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive", "with a remote explosive", "with a proximity explosive", "with a shootable explosive", "with a thrown explosive");
+        }
+          if (y == "specificbombs"){
+          if (document.getElementById("flashbangs").checked == true){
+          possiblekills.push("with an Explosive Compound", "with an Explosive Baseball", "with a Fragmentation Grenade", "with an ICA Explosive Phone", "with an ICA Micro Remote Explosive", "with an ICA Proximity Explosive", "with an ICA Proximity Micro Explosive", "with an ICA Remote Explosive", "with an ICA Tripwire Mine", "with Napoleon Blownaparte", "with a Proximity CX Demo Block", "with a Proximity Explosive Duck", "with an RFID Triggered Explosive", "with a Remote Breaching Charge", "with a Remote CX Demo Block", "with a Remote Explosive Duck", "with the Iconator", "with the Pale Duck", "after blinding with an ICA Flash Phone", "after pacifying with a Concussion Grenade", "after blinding with a Flash Grenade", "after pacifying with an ICA Proximity Concussion Device", "after pacifying with an ICA Remote Concussion Device", "after blinding with an ICA Remote Flash Device", "after blinding with a Magnesium Pouch", "after pacifying with a Remote Concussion Rubber Duck", "after pacifying with Shaman Powder", "with an ICA Explosive Phone", "with an ICA Tripwire Mine", "with an RFID Triggered Explosive", "after blinding with an ICA Flash Phone", "after pacifying with an ICA Remote Concussion Device", "after blinding with an ICA Remote Flash Device", "after pacifying with an ICA Proximity Concussion Device", "after blinding with a Flash Grenade");
+        } else if (document.getElementById("flashbangs").checked == false){
+          possiblekills.push("with an Explosive Compound", "with an Explosive Baseball", "with a Fragmentation Grenade", "with an ICA Explosive Phone", "with an ICA Micro Remote Explosive", "with an ICA Proximity Explosive", "with an ICA Proximity Micro Explosive", "with an ICA Remote Explosive", "with an ICA Tripwire Mine", "with Napoleon Blownaparte", "with a Proximity CX Demo Block", "with a Proximity Explosive Duck", "with an RFID Triggered Explosive", "with a Remote Breaching Charge", "with a Remote CX Demo Block", "with a Remote Explosive Duck", "with the Iconator", "with the Pale Duck", "with an Explosive Compound", "with an Explosive Baseball", "with a Fragmentation Grenade", "with an ICA Explosive Phone", "with an ICA Micro Remote Explosive", "with an ICA Proximity Explosive", "with an ICA Proximity Micro Explosive", "with an ICA Remote Explosive", "with an ICA Tripwire Mine", "with Napoleon Blownaparte", "with a Proximity CX Demo Block", "with a Proximity Explosive Duck", "with an RFID Triggered Explosive", "with a Remote Breaching Charge", "with a Remote CX Demo Block", "with a Remote Explosive Duck", "with the Iconator", "with the Pale Duck");
+        }
+        }
+          if (y == "sngbombs"){
+          possiblekills.push();
+        }
+        if (y == "genericbombs"){
+          possiblekills.push("with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion", "with an explosion");
+        }
+        }
+        <!--------------------------------------------- LOADOUT ACCIDENTS -->
+        if (document.getElementById("loaccident").checked == true){
+          var y = document.getElementById("accidents").value;
+          if (y == "basicaccidents"){
+          possiblekills.push("by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison", "by electrocution", "with poison");
+        }
+          if (y == "specificaccidents"){
+          possiblekills.push("with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe");
+        }
+          if (y == "sngaccidents"){
+          possiblekills.push("with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "with an Antique Lethal Syringe", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with Lethal Pills", "with a Modern Lethal Syringe", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "in an accident", "with an ICA Electrocution Phone", "with an ICA Proximity Taser", "with an ICA Remote Taser", "with a Lethal Poison Vial", "with a Modern Lethal Syringe", "in an accident", "in an accident", "in an accident");
+        }
+        if (y == "genericaccidents"){
+          possiblekills.push("in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison", "in an accident", "with poison");
+        }
+        }
+        <!--------------------------------------------- SNIPER ASSASSINATIONS -->
+        if (document.getElementById("adsnipers").checked == true){
+        var y = document.getElementById("guns").value;
+          if (y == "basicguns"){
+          possiblekills.push("with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination", "with a sniper assassination");
+        }
+          if (y == "loudguns"){
+          possiblekills.push("with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination", "with a loud sniper assassination", "with a silenced sniper assassination");
+        }
+        if (y == "specificguns"){
+          possiblekills.push("with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination", "with a Druzhina 34 assassination", "with a Druzhina 34 ICA Arctic assassination", "with a Jaeger 7 assassination", "with a Jaeger 7 Tiger assassination", "with a Jaeger 7 Lancer assassination", "with a Jaeger 7 Covert assassination", "with a Jaeger 7 Tuatara assassination", "with a Sieger 300 assassination", "with a Sieger 300 Ghost assassination", "with a Sieger 300 Advanced assassination", "with a Sieger 300 Tactical assassination");
+        }
+        }
+        <!--------------------------------------------- NECK SNAPS -->
+        if (document.getElementById("necksnaps").checked == true){
+        possiblekills.push("with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap", "with a neck snap");
+        }
+        <!--------------------------------------------- PLAYERS CHOICE KILLS -->
+        if (document.getElementById("anykill").checked == true){
+        possiblekills.push("using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method", "using any method");
+        }
+        <!--------------------------------------------- DISGUISES -->
+        if (document.getElementById("nodisguise").checked == true){
+        
+          possibledisguises.push(".");
+        }
+        if (document.getElementById("suit").checked == true){
+        
+          possibledisguises.push(" while wearing your starting suit.");
+        }
+        if (document.getElementById("basicsuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("guardsuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("cooksuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("techsuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("uniquesuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        if (document.getElementById("loosesuit").checked == true){
+        
+          possibledisguises.push();
+        }
+        <!--------------------------------------------- EXITS -->
+        if (document.getElementById("basicexits").checked == true){
+        
+          possibleexits.push();
+        }
+        if (document.getElementById("lockedexits").checked == true){
+        
+          possibleexits.push();
+        }
+        if (document.getElementById("hardexits").checked == true){
+        
+          possibleexits.push();
+        }
+        if (document.getElementById("exitdisguise").checked == true){
+        
+          var exitdisguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
+        }
+        if (document.getElementById("exitdisguise").checked == false){
+        
+          var exitdisguisemethod = ".";
+        }
+        <!--------------------------------------------- PICKUPS -->
+        if (document.getElementById("pickups").checked == true){
+        
+          possiblepickups.push();
+          
+        }
+        
+     var startmethod = possiblestarts[Math.floor(Math.random() * possiblestarts.length)];
+     var killmethod = possiblekills[Math.floor(Math.random() * possiblekills.length)];
+     var disguisemethod = possibledisguises[Math.floor(Math.random() * possibledisguises.length)];
+     var exitmethod = possibleexits[Math.floor(Math.random() * possibleexits.length)];
+     var pickupsmethod = possiblepickups[Math.floor(Math.random() * possiblepickups.length)];
+     var pickupitemsmethod = possiblepickupitems[Math.floor(Math.random() * possiblepickupitems.length)];
+     
+     if (killmethod == null) {
+     errorreset();
+     } else if (killmethod == "") {
+     crazywarning();
+     }
+     
+     if (disguisemethod == null) {
+     disguisereset();
+     }
+     
+        if (document.getElementById("pickups").checked == true){
+     document.getElementById("pickupconditions").innerHTML = "";
+        } else {
+     document.getElementById("pickupconditions").innerHTML = "";
+        }     
+     
+        if (document.getElementById("randostarts").checked == true){
+     document.getElementById("startconditions").innerHTML = "";
+        } else {
+     document.getElementById("startconditions").innerHTML = "";
+        }
+     
+document.getElementById("target1pic").innerHTML = '';
+     
+document.getElementById("target1killconditions").innerHTML = "";
+    
+document.getElementById("target2pic").innerHTML = '';
+    
+document.getElementById("target2killconditions").innerHTML = "";
+
+document.getElementById("target3pic").innerHTML = '';
+
+document.getElementById("target3killconditions").innerHTML = "";
+
+document.getElementById("target4pic").innerHTML = '';
+
+document.getElementById("target4killconditions").innerHTML = "";
+
+        if (document.getElementById("randoexits").checked == true){
+     document.getElementById("exitconditions").innerHTML = "";
+        } else {
+     document.getElementById("exitconditions").innerHTML = "";
+        }
+     }
+<!-------------------------------------------------------------------------------- CHONGQING -->
+    if (x == "chongqing"){
+    bgChange();
+    document.getElementById("missiontitle").innerHTML = "Chongqing - Coming January 20th, 2021"
         <!--------------------------------------------- STARTS -->
         var y = document.getElementById("starts").value;
           if (y == "basicstarts"){
@@ -6792,6 +7446,10 @@ var x = document.getElementById("mission").value;
     } else if (x == "dubai"){
     selectElement('mission', 'dartmoor')
     } else if (x == "dartmoor"){
+    selectElement('mission', 'berlin')
+    } else if (x == "berlin"){
+    selectElement('mission', 'chongqing')
+    } else if (x == "chongqing"){
     selectElement('mission', 'rando')
     }
 document.body.scrollTop = document.documentElement.scrollTop = 0;
